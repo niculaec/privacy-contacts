@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PrivacyContacts</string>
+    <string name="AppIcon">\@string appIcon</string>
+    <string name="login">\@ string Login</string>
 </resources>
