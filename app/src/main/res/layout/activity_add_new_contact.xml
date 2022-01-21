@@ -75,25 +75,30 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 
     <Button
-        android:id="@+id/buttonCancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/buttonDelete"
+        android:layout_width="122dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="16dp"
         android:text="@android:string/cancel"
+        android:textColor="#03DAC6"
+        android:textColorHint="#4DB6AC"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+        app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.948" />
 
     <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
+        android:id="@+id/buttonEdit"
+        android:layout_width="124dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="16dp"
         android:text="Save"
+        android:textColor="#03DAC6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.941" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
