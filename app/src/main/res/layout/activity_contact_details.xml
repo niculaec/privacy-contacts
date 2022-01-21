@@ -47,16 +47,15 @@
 
     <EditText
         android:id="@+id/editTextPhone"
-        android:layout_width="296dp"
-        android:layout_height="38dp"
+        android:layout_width="398dp"
+        android:layout_height="52dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
@@ -80,7 +79,7 @@
         android:layout_width="122dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
-        android:text="@android:string/delete"
+        android:text="delete"
         android:textColor="#03DAC6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
@@ -101,12 +100,39 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
         app:layout_constraintVertical_bias="0.941" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="31dp"
-        android:layout_height="39dp"
-        android:text="Button"
-        tools:layout_editor_absoluteX="312dp"
-        tools:layout_editor_absoluteY="311dp" />
+    <ImageView
+        android:id="@+id/imageMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="304dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextPhone"
+        app:layout_constraintStart_toStartOf="@+id/editTextPhone"
+        app:layout_constraintTop_toTopOf="@+id/editTextPhone"
+        app:layout_constraintVertical_bias="0.517"
+        app:srcCompat="@drawable/ic_message_24" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextPhone"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
+        app:layout_constraintStart_toEndOf="@+id/imageMessage"
+        app:layout_constraintTop_toTopOf="@+id/editTextPhone"
+        app:srcCompat="@drawable/ic_baseline_phone_24" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintHorizontal_bias="0.963"
+        app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toTopOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintVertical_bias="0.409"
+        app:srcCompat="@drawable/ic_baseline_email_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
