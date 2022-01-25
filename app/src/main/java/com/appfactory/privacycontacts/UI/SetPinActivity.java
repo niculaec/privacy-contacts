@@ -1,14 +1,16 @@
-package com.appfactory.privacycontacts;
+package com.appfactory.privacycontacts.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class EnterPin extends AppCompatActivity {
+import com.appfactory.privacycontacts.R;
+
+public class SetPinActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter_pin);
+        setContentView(R.layout.activity_set_pin);
     }
 }

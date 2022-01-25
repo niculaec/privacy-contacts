@@ -2,4 +2,10 @@
     <string name="app_name">PrivacyContacts</string>
     <string name="AppIcon">\@string appIcon</string>
     <string name="login">\@ string Login</string>
+    <string name="delete">delete</string>
+    <string name="edit">Edit</string>
+    <string name="email">Email</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="name">Name</string>
+    <string name="user_name">User Name</string>
 </resources>

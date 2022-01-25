@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateContact">
+    tools:context=".UI.UpdateContactActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -14,7 +14,7 @@
         app:cardCornerRadius="5dp">
 
         <ImageView
-            android:id="@+id/info_text"
+            android:id="@+id/userPicture"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
@@ -32,7 +32,7 @@
     </androidx.cardview.widget.CardView>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextPersonName"
         android:layout_width="387dp"
         android:layout_height="47dp"
         android:layout_marginStart="16dp"
@@ -57,10 +57,10 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/editTextEmailAddress"
         android:layout_width="382dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
@@ -75,21 +75,21 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 
     <Button
-        android:id="@+id/buttonDelete"
+        android:id="@+id/buttonCancel"
         android:layout_width="122dp"
         android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:text="@android:string/cancel"
         android:textColor="#03DAC6"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
+        app:layout_constraintEnd_toStartOf="@+id/buttonUpdate"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
         app:layout_constraintVertical_bias="0.948" />
 
     <Button
-        android:id="@+id/buttonEdit"
+        android:id="@+id/buttonUpdate"
         android:layout_width="124dp"
         android:layout_height="44dp"
         android:layout_marginEnd="16dp"
@@ -97,7 +97,7 @@
         android:textColor="#03DAC6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
         app:layout_constraintVertical_bias="0.941" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

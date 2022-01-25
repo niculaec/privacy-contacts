@@ -1,4 +1,4 @@
-package com.appfactory.privacycontacts;
+package com.appfactory.privacycontacts.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,14 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Login extends AppCompatActivity {
+import com.appfactory.privacycontacts.R;
+
+public class LoginActivity extends AppCompatActivity {
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        button = findViewById(R.id.buttonCreateAccount);
+        button = findViewById(R.id.buttonLoginCreateAccount);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -23,7 +25,7 @@ public class Login extends AppCompatActivity {
         });
     }
     public void openCreateAccount(){
-        Intent intent = new Intent(this, CreateAccount.class);
+        Intent intent = new Intent(this, CreateAccountActivity.class);
         startActivity(intent);
     }
 }

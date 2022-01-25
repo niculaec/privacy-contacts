@@ -1,9 +1,11 @@
-package com.appfactory.privacycontacts;
+package com.appfactory.privacycontacts.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class AddNewContact extends AppCompatActivity {
+import com.appfactory.privacycontacts.R;
+
+public class AddNewContactActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
