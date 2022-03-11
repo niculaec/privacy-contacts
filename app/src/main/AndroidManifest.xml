@@ -13,9 +13,6 @@
             android:name=".UI.AddNewContactActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.UpdateContactActivity"
-            android:exported="false" />
-        <activity
             android:name=".UI.ContactsListActivity"
             android:exported="false" />
         <activity
