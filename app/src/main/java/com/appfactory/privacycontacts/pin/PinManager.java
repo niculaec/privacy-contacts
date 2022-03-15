@@ -1,6 +1,7 @@
 package com.appfactory.privacycontacts.pin;
 
-import java.util.logging.Logger;
+
+import com.appfactory.privacycontacts.utills.Logger;
 
 public class PinManager {
     private PinRepository pinRepository = new PinRepository();
@@ -8,7 +9,7 @@ public class PinManager {
     boolean registerPin(String pinNumber) {
         if (pinNumber != null) {
             pinRepository.savePinNumber(pinNumber);
-            Logger.getLogger("Pin number " + pinNumber + " is saved.");
+            Logger.log("Pin number " + pinNumber + " is saved.");
             return true;
         }
         Logger.log("Pin number not saved. ");
@@ -17,10 +18,10 @@ public class PinManager {
 
     boolean loginWithPin(String pinNumber) {
         if (pinNumber.equals(pinRepository.readPinNumber())) {
-            Logger.getLogger("Successful login.");
+            Logger.log("Successful login.");
             return true;
         }
-        Logger.getLogger("Please check Pin number.");
+        Logger.log("Please check Pin number.");
         return false;
     }
 }

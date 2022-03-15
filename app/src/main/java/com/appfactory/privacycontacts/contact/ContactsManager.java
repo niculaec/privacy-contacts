@@ -1,7 +1,7 @@
 package com.appfactory.privacycontacts.contact;
 
 import java.util.ArrayList;
-import java.util.logging.Logger;
+import com.appfactory.privacycontacts.utills.Logger;
 
 public class ContactsManager {
     private final ArrayList<Contact> contactsList = new ArrayList<Contact>();
@@ -14,7 +14,7 @@ public class ContactsManager {
     public void addContact(Contact aContact) {
         contactsList.add(aContact);
         contactRepository.saveContact(aContact);
-        Logger.getLogger("The contact " + aContact + " was successfully added to the contacts list.");
+        Logger.log("The contact " + aContact + " was successfully added to the contacts list.");
     }
 
     public Contact updateContact(Contact aContact, String name, String phoneNUmber, String emailAddress, String userPicture) {
@@ -28,14 +28,14 @@ public class ContactsManager {
         contactsList.add(contactsList.indexOf(aContact), newContact);
         contactsList.remove(aContact);
         contactRepository.updateContact(newContact);
-        Logger.getLogger("UpdateContact \n New details: " + newContact + "\n Old details: " + aContact);
+        Logger.log("UpdateContact \n New details: " + newContact + "\n Old details: " + aContact);
         return newContact;
     }
 
     public void removeContact(Contact aContact) {
         contactsList.remove(aContact);
         contactRepository.removeContact(aContact);
-        Logger.getLogger(this + " removeContact\n The " + aContact + " \n Was successfully removed from the contacts list.");
+        Logger.log(this + " removeContact\n The " + aContact + " \n Was successfully removed from the contacts list.");
     }
 
     public ArrayList<Contact> getAllContacts() {
