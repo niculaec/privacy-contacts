@@ -7,6 +7,10 @@ public class ContactsManager {
     private final ArrayList<Contact> contactsList = new ArrayList<Contact>();
     private final ContactRepository contactRepository = new ContactRepository();
 
+    public ContactsManager() {
+        Contact contact1 = Contact.Builder.createContact("asdasd","077777777","asd@yahoo.com","786a87sd6a");
+    }
+
     public void addContact(Contact aContact) {
         contactsList.add(aContact);
         contactRepository.saveContact(aContact);
