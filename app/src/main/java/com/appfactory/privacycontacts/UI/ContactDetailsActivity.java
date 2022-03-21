@@ -15,8 +15,12 @@ import android.widget.Toast;
 
 import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.contact.Contact;
+import com.appfactory.privacycontacts.contact.ContactsManager;
+
+import java.net.BindException;
 
 public class ContactDetailsActivity extends AppCompatActivity {
+    ContactsManager contactsManager = new ContactsManager();
 
     ImageView iconCall , iconMessage, iconEmail, userPicture;
     Button deleteButton, editButton;
@@ -37,7 +41,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         editButton = findViewById(R.id.buttonEdit);
         userPicture = findViewById(R.id.userPicture);
 
-        textNameEditText.getText();
+        String personName = textNameEditText.getText().toString();
         phoneNumberEditText.getText();
         emailAddressEditText.getText();
         
@@ -47,16 +51,32 @@ public class ContactDetailsActivity extends AppCompatActivity {
                 Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
             }
         });
+
         iconMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
             }
         });
+
         iconEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contactsManager.removeContact();
             }
         });
     }
