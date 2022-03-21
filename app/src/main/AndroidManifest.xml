@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.appfactory.privacycontacts">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -10,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".UI.AddNewContactActivity"
+            android:name=".UI.ContactDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".UI.ContactsListActivity"
@@ -25,7 +26,7 @@
             android:name=".UI.SetPinActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.ContactDetailsActivity"
+            android:name=".UI.AddNewContactActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
