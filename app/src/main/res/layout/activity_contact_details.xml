@@ -23,7 +23,7 @@
             android:id="@+id/userPicture"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:clickable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
