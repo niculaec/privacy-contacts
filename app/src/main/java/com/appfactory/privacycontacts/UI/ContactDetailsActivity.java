@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.appfactory.privacycontacts.R;
+import com.appfactory.privacycontacts.contact.Contact;
 
 public class ContactDetailsActivity extends AppCompatActivity {
 
@@ -37,5 +40,24 @@ public class ContactDetailsActivity extends AppCompatActivity {
         textNameEditText.getText();
         phoneNumberEditText.getText();
         emailAddressEditText.getText();
+        
+        iconCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
+            }
+        });
+        iconMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
+            }
+        });
+        iconEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
