@@ -90,13 +90,6 @@ public class AddNewContactActivity extends AppCompatActivity {
                 setResult(RESULT_OK, galleryIntent);
                 startForResult.launch(galleryIntent);
                 galleryIntent.getData();
-
-//                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-//                getIntent.setType("image/*");
-//                Intent pickImage = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                pickImage.setType("image/*");
-//                Intent chooserImage = Intent.createChooser(getIntent, "Select Image");
-//                chooserImage.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{pickImage});
             }
         });
     }
