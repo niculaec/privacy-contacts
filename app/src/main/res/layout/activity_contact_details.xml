@@ -28,13 +28,6 @@
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
 
-        <TextView
-            android:id="@+id/userNameInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|start"
-            android:text="@string/user_name"
-            android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
     <EditText
