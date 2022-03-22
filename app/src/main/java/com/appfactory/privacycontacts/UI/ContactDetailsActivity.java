@@ -71,8 +71,15 @@ public class ContactDetailsActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contactsManager.removeContact();
+                contactsManager.removeContact(contact);
             }
         });
+
+        //In the future we will receive contactId when the activity starts.
+        contact = contactsManager.getAllContacts().get(0);
+        personNameTextView.setText(contact.getName());
+        phoneNumberTextView.setText(contact.getPhoneNumber());
+        emailAddressTextView.setText(contact.getEmailAddress());
+        //userPicture.setImageURI(contact.getUserPicture());
     }
 }
