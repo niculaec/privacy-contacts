@@ -96,5 +96,3 @@ public class AddNewContactActivity extends AppCompatActivity {
         });
     }
 }
-//TO DO:
-// used also for updateContact. new intent (passam id contactului) si folosim .setText
