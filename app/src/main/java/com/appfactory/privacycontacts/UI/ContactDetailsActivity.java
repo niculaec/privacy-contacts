@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appfactory.privacycontacts.R;
@@ -18,16 +18,17 @@ public class ContactDetailsActivity extends AppCompatActivity {
 
     ImageView iconCall , iconMessage, iconEmail, userPicture;
     Button deleteButton, editButton;
-    EditText nameEditText, phoneNumberEditText, emailAddressEditText;
+    TextView personNameTextView, phoneNumberTextView, emailAddressTextView;
+    Contact contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_details);
 
-        nameEditText = findViewById(R.id.editTextPersonName);
-        phoneNumberEditText = findViewById(R.id.editTextPhone);
-        emailAddressEditText = findViewById(R.id.editTextEmailAddress);
+        personNameTextView = findViewById(R.id.personNameTextView);
+        phoneNumberTextView = findViewById(R.id.phoneTextView);
+        emailAddressTextView = findViewById(R.id.emailAddressTextView);
         iconCall = findViewById(R.id.iconCall);
         iconMessage = findViewById(R.id.iconMessage);
         iconEmail = findViewById(R.id.iconEmail);
@@ -35,9 +36,9 @@ public class ContactDetailsActivity extends AppCompatActivity {
         editButton = findViewById(R.id.buttonEdit);
         userPicture = findViewById(R.id.userPicture);
 
-        nameEditText.getText().toString();
-        phoneNumberEditText.getText();
-        emailAddressEditText.getText();
+        personNameTextView.getText().toString();
+        phoneNumberTextView.getText();
+        emailAddressTextView.getText();
         
         iconCall.setOnClickListener(new View.OnClickListener() {
             @Override
