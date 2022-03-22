@@ -11,24 +11,20 @@
         android:layout_width="408dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        app:cardCornerRadius="5dp">
+        app:cardCornerRadius="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/userPicture"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:clickable="true"
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
 
-        <TextView
-            android:id="@+id/userNameInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|left"
-            android:text="User Name"
-            android:textSize="24sp" />
     </androidx.cardview.widget.CardView>
 
     <EditText
