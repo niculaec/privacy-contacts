@@ -39,6 +39,12 @@ public class ContactsManager {
         Logger.log(this + " removeContact\n The " + aContact + " \n Was successfully removed from the contacts list.");
     }
 
+    //Please add method getContact.
+//    public Contact getContact(String id){
+//        
+//     return Contact;
+//    }
+
     public ArrayList<Contact> getAllContacts() {
         if(contactsList.isEmpty()){
             ArrayList<Contact> repoContacts = contactRepository.getAllContacts();
