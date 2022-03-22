@@ -9,6 +9,7 @@ public class ContactsManager {
 
     public ContactsManager() {
         Contact contact1 = Contact.Builder.createContact("asdasd","077777777","asd@yahoo.com","786a87sd6a");
+        addContact(contact1);
     }
 
     public void addContact(Contact aContact) {
