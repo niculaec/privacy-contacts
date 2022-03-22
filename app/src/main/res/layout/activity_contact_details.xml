@@ -14,7 +14,7 @@
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="32dp"
         app:cardCornerRadius="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/personNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -30,10 +30,10 @@
 
     </androidx.cardview.widget.CardView>
 
-    <EditText
-        android:id="@+id/editTextPersonName"
-        android:layout_width="387dp"
-        android:layout_height="47dp"
+    <TextView
+        android:id="@+id/personNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -44,10 +44,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_view" />
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="398dp"
-        android:layout_height="52dp"
+    <TextView
+        android:id="@+id/phoneTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="16dp"
@@ -56,7 +56,7 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/personNameTextView" />
 
     <ImageView
         android:id="@+id/iconMessage"
@@ -64,9 +64,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="304dp"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintStart_toStartOf="@+id/editTextPhone"
-        app:layout_constraintTop_toTopOf="@+id/editTextPhone"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneTextView"
+        app:layout_constraintStart_toStartOf="@+id/phoneTextView"
+        app:layout_constraintTop_toTopOf="@+id/phoneTextView"
         app:layout_constraintVertical_bias="0.517"
         app:srcCompat="@drawable/ic_message_24" />
 
@@ -75,16 +75,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
+        app:layout_constraintBottom_toBottomOf="@+id/phoneTextView"
+        app:layout_constraintEnd_toEndOf="@+id/phoneTextView"
         app:layout_constraintStart_toEndOf="@+id/iconMessage"
-        app:layout_constraintTop_toTopOf="@+id/editTextPhone"
+        app:layout_constraintTop_toTopOf="@+id/phoneTextView"
         app:srcCompat="@drawable/ic_baseline_phone_24" />
 
-    <EditText
-        android:id="@+id/editTextEmailAddress"
-        android:layout_width="382dp"
-        android:layout_height="46dp"
+    <TextView
+        android:id="@+id/emailAddressTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -94,17 +94,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneTextView" />
 
     <ImageView
         android:id="@+id/iconEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editTextEmailAddress"
+        app:layout_constraintBottom_toBottomOf="@+id/emailAddressTextView"
+        app:layout_constraintEnd_toEndOf="@+id/emailAddressTextView"
         app:layout_constraintHorizontal_bias="0.963"
-        app:layout_constraintStart_toStartOf="@+id/editTextEmailAddress"
-        app:layout_constraintTop_toTopOf="@+id/editTextEmailAddress"
+        app:layout_constraintStart_toStartOf="@+id/emailAddressTextView"
+        app:layout_constraintTop_toTopOf="@+id/emailAddressTextView"
         app:layout_constraintVertical_bias="0.409"
         app:srcCompat="@drawable/ic_baseline_email_24" />
 
@@ -119,7 +119,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddressTextView"
         app:layout_constraintVertical_bias="0.948" />
 
     <Button
@@ -131,7 +131,7 @@
         android:textColor="#03DAC6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddressTextView"
         app:layout_constraintVertical_bias="0.941" />
 
 
