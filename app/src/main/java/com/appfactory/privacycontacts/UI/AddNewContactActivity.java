@@ -45,7 +45,6 @@ public class AddNewContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_contact);
-        //This Intent i will be used to change the activity.
 
         saveButton = findViewById(R.id.buttonSave);
         cancelButton = findViewById(R.id.buttonCancel);
