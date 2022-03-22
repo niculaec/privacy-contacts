@@ -91,7 +91,6 @@ public class AddNewContactActivity extends AppCompatActivity {
                 galleryIntent.setType("image/*");
                 setResult(RESULT_OK, galleryIntent);
                 startForResult.launch(galleryIntent);
-                galleryIntent.getData();
             }
         });
     }
