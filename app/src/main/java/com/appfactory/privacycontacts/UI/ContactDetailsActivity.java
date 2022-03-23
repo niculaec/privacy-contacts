@@ -12,9 +12,11 @@ import android.widget.Toast;
 import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.contact.Contact;
 import com.appfactory.privacycontacts.contact.ContactsManager;
+import com.appfactory.privacycontacts.utills.PhoneInteractor;
 
 public class ContactDetailsActivity extends AppCompatActivity {
     ContactsManager contactsManager = new ContactsManager();
+    PhoneInteractor phoneInteractor = new PhoneInteractor();
 
     ImageView iconCall , iconMessage, iconEmail, userPicture;
     Button deleteButton, editButton;
@@ -35,10 +37,6 @@ public class ContactDetailsActivity extends AppCompatActivity {
         deleteButton = findViewById(R.id.buttonDelete);
         editButton = findViewById(R.id.buttonEdit);
         userPicture = findViewById(R.id.userPicture);
-
-        personNameTextView.getText().toString();
-        phoneNumberTextView.getText();
-        emailAddressTextView.getText();
         
         iconCall.setOnClickListener(new View.OnClickListener() {
             @Override
