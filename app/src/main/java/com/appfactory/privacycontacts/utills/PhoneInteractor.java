@@ -11,15 +11,9 @@ public class PhoneInteractor {
     ContactDetailsActivity contactDetailsActivity = new ContactDetailsActivity();
 
     void makeCall(String phoneNumber) {
-
-        iconCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse(phoneNumber));
-                contactDetailsActivity.startActivity(callIntent);
-            }
-        });
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse(phoneNumber));
+        contactDetailsActivity.startActivity(callIntent);
         Logger.log("The call is made");
     }
 

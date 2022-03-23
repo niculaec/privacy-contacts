@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".UI.ContactDetailsActivity"
+            android:name=".UI.AddNewContactActivity"
             android:exported="false" />
         <activity
             android:name=".UI.ContactsListActivity"
@@ -29,7 +29,7 @@
             android:name=".UI.SetPinActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.AddNewContactActivity"
+            android:name=".UI.ContactDetailsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
