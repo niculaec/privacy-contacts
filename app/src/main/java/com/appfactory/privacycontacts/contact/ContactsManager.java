@@ -40,10 +40,10 @@ public class ContactsManager {
     }
 
     //Please add method getContact.
-    public String getContact(String id){
+    public Contact getContact(String id){
         for (Contact contact :contactsList) {
             if (contact.getId() != null )
-                return id;
+                return contact;
         }
      return null;
     }
