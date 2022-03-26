@@ -42,10 +42,10 @@ public class ContactsManager {
     //Please add method getContact.
     public Contact getContact(String id){
         for (Contact contact :contactsList) {
-            if (contact.getId() != null )
+            if (contact.getId().equals(id))
                 return contact;
         }
-     return null;
+        return null;
     }
 
     public ArrayList<Contact> getAllContacts() {
