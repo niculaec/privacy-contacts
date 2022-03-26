@@ -16,7 +16,7 @@ import com.appfactory.privacycontacts.utills.PhoneInteractor;
 
 public class ContactDetailsActivity extends AppCompatActivity {
     ContactsManager contactsManager = new ContactsManager();
-    PhoneInteractor phoneInteractor = new PhoneInteractor();
+    PhoneInteractor phoneInteractor = new PhoneInteractor(this);
 
     ImageView iconCall , iconMessage, iconEmail, userPicture;
     Button deleteButton, editButton;
@@ -41,6 +41,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         iconCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                phoneInteractor.makeCall(contact.getPhoneNumber());
                 Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
             }
         });
