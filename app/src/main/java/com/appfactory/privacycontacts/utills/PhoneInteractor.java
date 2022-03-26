@@ -25,7 +25,7 @@ public class PhoneInteractor {
         Logger.log("The call is made");
     }
 
-    void sendMessage(String phoneNumber) {
+    public void sendMessage(String phoneNumber) {
         // on below line we are passing our contact number.
         Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phoneNumber));
         smsIntent.putExtra("sms_body", "Enter your messaage");
@@ -33,7 +33,7 @@ public class PhoneInteractor {
         Logger.log("Message has been sent");
     }
 
-    void SendEmail(String emailAddress) {
+    public void SendEmail(String emailAddress) {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, emailAddress);
