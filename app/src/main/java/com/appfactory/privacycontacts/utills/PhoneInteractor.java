@@ -12,7 +12,6 @@ public class PhoneInteractor {
         this.context = context;
     }
 
-
     public void makeCall(String phoneNumber) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         // on below line we are setting data to it.
@@ -28,16 +27,16 @@ public class PhoneInteractor {
     public void sendMessage(String phoneNumber) {
         // on below line we are passing our contact number.
         Intent smsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phoneNumber));
-        smsIntent.putExtra("sms_body", "Enter your messaage");
+        smsIntent.putExtra("sms_body", "Enter your message");
         context.startActivity(smsIntent);
         Logger.log("Message has been sent");
     }
 
-    public void SendEmail(String emailAddress) {
+    public void sendEmail(String emailAddress) {
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setData(Uri.parse("mailto:" + emailAddress));
         emailIntent.putExtra(Intent.EXTRA_EMAIL, emailAddress);
-        if (emailIntent.resolveActivity(this.context.getPackageManager()) != null) {
+        if (permissionsManager.sendEmailPermission()) {
             context.startActivity(emailIntent);
         }
         Logger.log("Email has been sent");
