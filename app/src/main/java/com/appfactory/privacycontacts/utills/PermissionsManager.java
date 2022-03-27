@@ -17,6 +17,20 @@ public class PermissionsManager {
                 Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
     }
 
+    public boolean sendMessagePermission() {
+        //request permission.
+        return ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public boolean sendEmailPermission() {
+        //request permission.
+        return ActivityCompat.checkSelfPermission(context,
+                Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+
+
 //    public void textPermission(){
 //        if (ContextCompat.checkSelfPermission(
 //                CONTEXT, Manifest.permission.REQUESTED_PERMISSION) ==
