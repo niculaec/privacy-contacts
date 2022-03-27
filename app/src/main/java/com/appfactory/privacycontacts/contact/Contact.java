@@ -6,8 +6,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
 import java.util.UUID;
+
 @Entity
 public class Contact  {
 
@@ -15,10 +15,13 @@ public class Contact  {
     private static final String savedId = UUID.randomUUID().toString();
     @ColumnInfo
     private final String name;
+
     @ColumnInfo
     private final String phoneNumber;
+
     @ColumnInfo
     private final String emailAddress;
+
     @ColumnInfo
     private final String userPicture;
 
