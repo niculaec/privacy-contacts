@@ -16,7 +16,7 @@ import com.appfactory.privacycontacts.utills.PhoneInteractor;
 
 public class ContactDetailsActivity extends AppCompatActivity {
     ContactsManager contactsManager = new ContactsManager();
-    PhoneInteractor phoneInteractor = new PhoneInteractor(this);
+    PhoneInteractor phoneInteractor = new PhoneInteractor();
 
     ImageView iconCall , iconMessage, iconEmail, userPicture;
     Button deleteButton, editButton;
@@ -49,6 +49,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         iconMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                phoneInteractor.sendMessage(contact.getPhoneNumber());
                 Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
             }
         });
@@ -56,6 +57,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         iconEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                phoneInteractor.sendEmail(contact.getEmailAddress());
                 Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
             }
         });
