@@ -17,12 +17,12 @@ import com.appfactory.privacycontacts.contact.Contact;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactAdaptor extends ArrayAdapter<Contact> {
+public class ContactAdapter extends ArrayAdapter<Contact> {
 
     ArrayList<Contact> mContacts;
     LayoutInflater mInflater;
 
-    public ContactAdaptor(@NonNull Context context,  @NonNull List<Contact> objects) {
+    public ContactAdapter(@NonNull Context context, @NonNull List<Contact> objects) {
         super(context, R.layout.contacts_lw_item, objects);
 
         mContacts= (ArrayList<Contact>) objects;
@@ -42,6 +42,6 @@ public class ContactAdaptor extends ArrayAdapter<Contact> {
         textViewName.setText(contact.getName());
         imageViewUserPicture.setImageResource(R.drawable.logo);
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 }
