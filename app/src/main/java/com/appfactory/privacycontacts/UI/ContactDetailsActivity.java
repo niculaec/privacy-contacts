@@ -16,7 +16,7 @@ import com.appfactory.privacycontacts.utills.PhoneInteractor;
 
 public class ContactDetailsActivity extends AppCompatActivity {
     ContactsManager contactsManager = new ContactsManager();
-    PhoneInteractor phoneInteractor = new PhoneInteractor();
+    PhoneInteractor phoneInteractor = new PhoneInteractor(this);
 
     ImageView iconCall , iconMessage, iconEmail, userPicture;
     Button deleteButton, editButton;
