@@ -7,8 +7,9 @@
     tools:context=".UI.ContactsListActivity">
 
     <ListView
-        android:layout_width="412dp"
-        android:layout_height="730dp"
+        android:id="@+id/contactListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
