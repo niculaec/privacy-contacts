@@ -8,7 +8,7 @@ public class ContactsManager {
     private final ContactRepository contactRepository = new ContactRepository();
 
     public ContactsManager() {
-        Contact contact1 = Contact.Builder.createContact("asdasd","077777777","asd@yahoo.com","786a87sd6a");
+        Contact contact1 = Contact.Builder.createContact("Sergiu","+40724546424","alexandrescu.sergiu@gmail.com","786a87sd6a");
         addContact(contact1);
     }
 
