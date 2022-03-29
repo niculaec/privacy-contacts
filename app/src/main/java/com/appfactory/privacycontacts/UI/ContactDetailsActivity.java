@@ -78,6 +78,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
 
         //In the future we will receive contactId when the activity starts.
         contact = contactsManager.getAllContacts().get(0);
+        contactsManager.getContact(contact.getId());
         personNameTextView.setText(contact.getName());
         phoneNumberTextView.setText(contact.getPhoneNumber());
         emailAddressTextView.setText(contact.getEmailAddress());
