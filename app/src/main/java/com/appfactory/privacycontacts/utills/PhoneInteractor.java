@@ -37,9 +37,6 @@ public class PhoneInteractor {
     }
 
     public void sendEmail(String emailAddress) {
-        if (!permissionsManager.hasEmailPermission()) {
-            return;
-        }
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.setData(Uri.parse("mailto:" + emailAddress));
         context.startActivity(emailIntent);

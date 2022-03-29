@@ -31,11 +31,4 @@ public class PermissionsManager {
         return  hasPermission(Manifest.permission.SEND_SMS);
         //Request permission to send SMS.
     }
-
-    public boolean hasEmailPermission() {
-        //TODO: Fix the email syntax.
-        return hasPermission(Manifest.permission.ADD_VOICEMAIL);
-        // Request permission to send email
-    }
-
 }
