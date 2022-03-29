@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class ContactsManager {
-    private final ArrayList<Contact> contactsList = new ArrayList<Contact>();
+    public static final ArrayList<Contact> contactsList = new ArrayList<Contact>();
     private final ContactRepository contactRepository = new ContactRepository();
 
     public ContactsManager() {
