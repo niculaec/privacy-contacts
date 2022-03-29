@@ -19,14 +19,14 @@
         android:src="@drawable/logo"
         android:layout_centerVertical="true"
         android:contentDescription="Contact picture"
-        app:layout_constraintEnd_toStartOf="@+id/TextViewContactName"
+        app:layout_constraintEnd_toStartOf="@+id/personNameTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
     <!--text view for displaying user name-->
     <TextView
-        android:id="@+id/TextViewContactName"
+        android:id="@+id/personNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
