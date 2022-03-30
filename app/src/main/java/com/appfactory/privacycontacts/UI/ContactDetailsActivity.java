@@ -69,7 +69,15 @@ public class ContactDetailsActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //
+                Intent editContactIntent = new Intent(ContactDetailsActivity.this,AddNewContactActivity.class);
+                if (contact.getId()== null){
+                    startActivity(editContactIntent);
+                }
+//                else (contact.getId()){
+//                    contactsManager.updateContact();
+//                    return;
+//                };
+
             }
         });
 
