@@ -22,7 +22,7 @@ import com.appfactory.privacycontacts.contact.ContactsManager;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class AddNewContactActivity extends AppCompatActivity {
-    ContactsManager contactsManager = new ContactsManager();
+    ContactsManager contactsManager = ContactsManager.getInstance();
     Button saveButton, cancelButton;
     EditText personNameEditText, phoneNumberEditText, emailAddressEditText;
     ImageView userPicture;

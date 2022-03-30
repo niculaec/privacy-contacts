@@ -7,7 +7,7 @@ public class ContactRepository {
     ArrayList<Contact> contactList = new ArrayList<Contact>();
 
     public ContactRepository() {
-        Contact contactRepo1 = Contact.Builder.createContact("bbbb","000000","asd@yahoo.com","as789dha98dh");
+        Contact contactRepo1 = Contact.Builder.createContact("bbbb","000000","asd@yahoo.com","5555");
         contactList.add(contactRepo1);
     }
 
