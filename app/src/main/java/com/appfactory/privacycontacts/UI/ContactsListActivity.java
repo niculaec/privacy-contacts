@@ -18,8 +18,7 @@ import com.appfactory.privacycontacts.contact.ContactsManager;
 import java.util.ArrayList;
 
 public class ContactsListActivity extends AppCompatActivity {
-    ContactsManager contactsManager = new ContactsManager();
-    static final ArrayList<Contact> contactsList = new ArrayList<Contact>();
+    ContactsManager contactsManager = ContactsManager.getInstance();
     private ListView listView;
 
     @Override
@@ -37,16 +36,12 @@ public class ContactsListActivity extends AppCompatActivity {
 //                return o1.getName().compareTo(o2.getName());
 //            }
 //        });
-
-        ContactAdapter arrayAdapter = new ContactAdapter(this, 0, contactsList);
-        ListView listView = findViewById(R.id.contactListView);
-        listView.setAdapter(arrayAdapter);
     }
 
     private void setUpList() {
         listView = (ListView) findViewById(R.id.contactListView);
-        ContactAdapter adapter = new ContactAdapter(getApplicationContext(),0,contactsList);
-        listView.setAdapter(adapter);
+        ContactAdapter arrayAdapter = new ContactAdapter(this, 0, contactsManager.getAllContacts());
+        listView.setAdapter(arrayAdapter);
     }
     private void setUpOnclickListener()
     {
@@ -54,9 +49,9 @@ public class ContactsListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
             {
-                Contact selectContact = (Contact) (listView.getItemAtPosition(position));
+                Contact selectedContact =(Contact) listView.getItemAtPosition(position);
                 Intent contactDetail = new Intent(getApplicationContext(), ContactDetailsActivity.class);
-                contactDetail.putExtra("id",selectContact.getId());
+                contactDetail.putExtra(ContactsManager.ID,selectedContact.getId());
                 startActivity(contactDetail);
             }
         });

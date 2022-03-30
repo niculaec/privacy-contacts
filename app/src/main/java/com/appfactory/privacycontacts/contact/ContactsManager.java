@@ -1,15 +1,26 @@
 package com.appfactory.privacycontacts.contact;
 
 import java.util.ArrayList;
+
+import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class ContactsManager {
-    public static final ArrayList<Contact> contactsList = new ArrayList<Contact>();
+    private static final ContactsManager INSTANCE = new ContactsManager();
+    private final ArrayList<Contact> contactsList = new ArrayList<Contact>();
     private final ContactRepository contactRepository = new ContactRepository();
+    public static final String ID = "id";
 
-    public ContactsManager() {
-        Contact contact1 = Contact.Builder.createContact("Sergiu","+40724546424","alexandrescu.sergiu@gmail.com","786a87sd6a");
+
+    private ContactsManager() {
+        Contact contact1 = Contact.Builder.createContact("Sergiu","077777777","asd@yahoo.com","25544103354");
+        Contact contact2 = Contact.Builder.createContact("Mama","077777777","asd@yahoo.com","25544103354");
         addContact(contact1);
+        addContact(contact2);
+    }
+
+    public static ContactsManager getInstance(){
+        return INSTANCE;
     }
 
     public void addContact(Contact aContact) {

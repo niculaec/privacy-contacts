@@ -1,14 +1,15 @@
 package com.appfactory.privacycontacts.contact;
 
+import android.net.Uri;
+
 import java.util.UUID;
 
 public class Contact {
-    private static final String savedId = UUID.randomUUID().toString();
     private final String name;
     private final String phoneNumber;
     private final String emailAddress;
     private final String userPicture;
-    private final String id;
+    private String id;
 
     private Contact(String name, String phoneNumber, String emailAddress, String userPicture, String id) {
         this.name = name;
@@ -58,7 +59,7 @@ public class Contact {
             if (!checkValidParams(name, phoneNumber, emailAddress, userPicture)) {
                 return null;
             }
-            return new Contact(name, phoneNumber, emailAddress, userPicture, savedId);
+            return new Contact(name, phoneNumber, emailAddress, userPicture, UUID.randomUUID().toString());
         }
 
         private static boolean checkValidParams(String name, String phoneNumber, String emailAddress, String userPicture) {

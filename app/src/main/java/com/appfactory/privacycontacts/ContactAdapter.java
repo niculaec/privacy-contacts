@@ -1,6 +1,7 @@
 package com.appfactory.privacycontacts;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +31,11 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.contact_single_item, parent, false);
         }
-        TextView textViewName =(TextView) convertView.findViewById(R.id.personNameTextView);
-        ImageView imageViewUserPicture = (ImageView) convertView.findViewById(R.id.userPicture);
 
-        //Contact contact = mContacts.get(position);
+        TextView textViewName = convertView.findViewById(R.id.personNameTextView);
+        ImageView imageViewUserPicture = convertView.findViewById(R.id.userPicture);
         textViewName.setText(contact.getName());
-        imageViewUserPicture.setImageResource(R.drawable.logo);
+        //imageViewUserPicture.setImageResource(Integer.parseInt(contact.getUserPicture()));
 
         return convertView;
     }

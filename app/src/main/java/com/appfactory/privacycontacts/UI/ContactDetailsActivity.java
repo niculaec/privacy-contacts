@@ -16,7 +16,7 @@ import com.appfactory.privacycontacts.contact.ContactsManager;
 import com.appfactory.privacycontacts.utills.PhoneInteractor;
 
 public class ContactDetailsActivity extends AppCompatActivity {
-    ContactsManager contactsManager = new ContactsManager();
+    ContactsManager contactsManager = ContactsManager.getInstance();
     PhoneInteractor phoneInteractor = new PhoneInteractor(this);
 
     ImageView iconCall , iconMessage, iconEmail, userPicture;
@@ -29,12 +29,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_details);
 
-        getSelectedContact();
-        setValues();
-
-        contact = ContactsListActivity.contactsList.get(0);
-
-        personNameTextView = findViewById(R.id.personNameTextView);
+        personNameTextView = (TextView) findViewById(R.id.personNameTextView);
         phoneNumberTextView = findViewById(R.id.phoneTextView);
         emailAddressTextView = findViewById(R.id.emailAddressTextView);
         iconCall = findViewById(R.id.iconCall);
@@ -42,8 +37,11 @@ public class ContactDetailsActivity extends AppCompatActivity {
         iconEmail = findViewById(R.id.iconEmail);
         deleteButton = findViewById(R.id.buttonDelete);
         editButton = findViewById(R.id.buttonEdit);
-        userPicture = findViewById(R.id.userPicture);
-        
+        userPicture =(ImageView) findViewById(R.id.userPicture);
+
+        getSelectedContact();
+        setValues();
+
         iconCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,27 +79,19 @@ public class ContactDetailsActivity extends AppCompatActivity {
                 contactsManager.removeContact(contact);
             }
         });
-
-        //In the future we will receive contactId when the activity starts.
-        contact = contactsManager.getAllContacts().get(0);
-        contactsManager.getContact(contact.getId());
-        personNameTextView.setText(contact.getName());
-        phoneNumberTextView.setText(contact.getPhoneNumber());
-        emailAddressTextView.setText(contact.getEmailAddress());
-        //userPicture.setImageURI(contact.getUserPicture());
     }
 
     private void getSelectedContact() {
         Intent previousIntent = getIntent();
-        String parsedStringName = previousIntent.getStringExtra("name");
-        contact = ContactsManager.contactsList.get(Integer.parseInt(parsedStringName));
+        String parsedID = previousIntent.getStringExtra(ContactsManager.ID);
+        contact = contactsManager.getContact(parsedID);
         //MainActivity.shapeList.get(Integer.valueOf(parsedStringID))
     }
 
     private void setValues() {
-        TextView textViewName = findViewById(R.id.personNameTextView);
-
         personNameTextView.setText(contact.getName());
-        userPicture.setImageResource(Integer.parseInt(contact.getUserPicture()));
+        phoneNumberTextView.setText(contact.getPhoneNumber());
+        emailAddressTextView.setText(contact.getEmailAddress());
+        //userPicture.setImageResource(Integer.parseInt(contact.getUserPicture()));
     }
 }
