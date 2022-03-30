@@ -72,12 +72,8 @@ public class ContactDetailsActivity extends AppCompatActivity {
                 Intent editContactIntent = new Intent(ContactDetailsActivity.this,AddNewContactActivity.class);
                 if (contact.getId()== null){
                     startActivity(editContactIntent);
-                }
-//                else (contact.getId()){
-//                    contactsManager.updateContact();
-//                    return;
-//                };
-
+                    return;
+                };
             }
         });
 
