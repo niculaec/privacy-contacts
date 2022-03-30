@@ -16,6 +16,8 @@ import com.appfactory.privacycontacts.contact.Contact;
 import com.appfactory.privacycontacts.contact.ContactsManager;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ContactsListActivity extends AppCompatActivity {
     ContactsManager contactsManager = ContactsManager.getInstance();
@@ -30,12 +32,13 @@ public class ContactsListActivity extends AppCompatActivity {
         setUpList();
         setUpOnclickListener();
 
-//        Collections.sort(contactsList, new Comparator<Contact>() {
-//            @Override
-//            public int compare(Contact o1, Contact o2) {
-//                return o1.getName().compareTo(o2.getName());
-//            }
-//        });
+        contactsManager.getAllContacts().sort(new Comparator<Contact>() {
+            // usage of Comparator.class to sort the contacts list.
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
     }
 
     private void setUpList() {
