@@ -46,6 +46,12 @@ public class ContactsListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        listView.setAdapter(listView.getAdapter());
+    }
+
     private void setUpList() {
         listView = (ListView) findViewById(R.id.contactListView);
         ContactAdapter arrayAdapter = new ContactAdapter(this, 0, contactsManager.getAllContacts());
