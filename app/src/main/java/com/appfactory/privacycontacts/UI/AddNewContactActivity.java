@@ -70,18 +70,21 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String personName = personNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
-                Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, imageUri.toString());
-                if (aContact == null){
-                    Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
-                    Logger.log("Contact information invalid.");
-                    return;
-                }
-                contactsManager.addContact(aContact);
 
+                if (contact != null) {
+                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, "");
+                } else {
+                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, imageUri.toString());
+                    if (aContact == null) {
+                        Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
+                        Logger.log("Contact information invalid.");
+                        return;
+                    }
+                    contactsManager.addContact(aContact);
+                }
                 Toast.makeText(AddNewContactActivity.this, "Contact was saved.", Toast.LENGTH_LONG).show();
                 Logger.log("Contact was saved.");
                 finish();
-
             }
         });
 
