@@ -19,7 +19,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
     ContactsManager contactsManager = ContactsManager.getInstance();
     PhoneInteractor phoneInteractor = new PhoneInteractor(this);
 
-    ImageView iconCall , iconMessage, iconEmail, userPicture;
+    ImageView iconCall, iconMessage, iconEmail, userPicture;
     Button deleteButton, editButton;
     TextView personNameTextView, phoneNumberTextView, emailAddressTextView;
     Contact contact;
@@ -37,10 +37,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         iconEmail = findViewById(R.id.iconEmail);
         deleteButton = findViewById(R.id.buttonDelete);
         editButton = findViewById(R.id.buttonEdit);
-        userPicture =(ImageView) findViewById(R.id.userPicture);
-
-        getSelectedContact();
-        setValues();
+        userPicture = (ImageView) findViewById(R.id.userPicture);
 
         iconCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,11 +66,9 @@ public class ContactDetailsActivity extends AppCompatActivity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent editContactIntent = new Intent(ContactDetailsActivity.this,AddNewContactActivity.class);
-                if (contact.getId()== null){
-                    startActivity(editContactIntent);
-                    return;
-                };
+                Intent editContactIntent = new Intent(ContactDetailsActivity.this, AddNewContactActivity.class);
+                editContactIntent.putExtra(ContactsManager.ID_KEY, contact.getId());
+                startActivity(editContactIntent);
             }
         });
 
@@ -81,15 +76,22 @@ public class ContactDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 contactsManager.removeContact(contact);
+                finish();
             }
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        getSelectedContact();
+        setValues();
+    }
+
     private void getSelectedContact() {
-        Intent previousIntent = getIntent();
-        String parsedID = previousIntent.getStringExtra(ContactsManager.ID);
+        Intent currentIntent = getIntent();
+        String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
         contact = contactsManager.getContact(parsedID);
-        //MainActivity.shapeList.get(Integer.valueOf(parsedStringID))
     }
 
     private void setValues() {
