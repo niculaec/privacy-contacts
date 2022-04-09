@@ -58,9 +58,9 @@ public class ContactsListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
             {
                 Contact selectedContact =(Contact) listView.getItemAtPosition(position);
-                Intent contactDetail = new Intent(getApplicationContext(), ContactDetailsActivity.class);
-                contactDetail.putExtra(ContactsManager.ID,selectedContact.getId());
-                startActivity(contactDetail);
+                Intent contactDetailIntent = new Intent(ContactsListActivity.this, ContactDetailsActivity.class);
+                contactDetailIntent.putExtra(ContactsManager.ID_KEY,selectedContact.getId());
+                startActivity(contactDetailIntent);
             }
         });
 
