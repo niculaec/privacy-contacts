@@ -27,19 +27,21 @@ public class AddNewContactActivity extends AppCompatActivity {
     EditText personNameEditText, phoneNumberEditText, emailAddressEditText;
     ImageView userPicture;
     Uri imageUri;
+    Contact contact;
 
     // The new way from android x above to write onActivityResult.
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-            if(result != null && result.getResultCode() == RESULT_OK){
-                if (result.getData()!=null) {
+            if (result != null && result.getResultCode() == RESULT_OK) {
+                if (result.getData() != null) {
                     userPicture.setImageURI(result.getData().getData());
                     imageUri = result.getData().getData();
                 }
             }
         }
     });
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +58,14 @@ public class AddNewContactActivity extends AppCompatActivity {
         Intent currentIntent = getIntent();
         String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
         contact = contactsManager.getContact(parsedID);
+
         if (contact != null) {
             personNameEditText.setText(contact.getName());
             phoneNumberEditText.setText(contact.getPhoneNumber());
             emailAddressEditText.setText(contact.getEmailAddress());
             saveButton.setText("Update");
         }
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +96,7 @@ public class AddNewContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish(); // This activity is finished once the user press cancelButton,
-                        // the android OS are taking the previous activity (ContactsList) from DDR memory and displayed on the screen.(Activity life cycle).
+                // the android OS are taking the previous activity (ContactsList) from DDR memory and displayed on the screen.(Activity life cycle).
             }
         });
 
