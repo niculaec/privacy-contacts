@@ -75,7 +75,6 @@ public class ContactsListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ContactsListActivity.this,AddNewContactActivity.class);
                 startActivity(intent);
-                contactsManager.addContact(contact);
             }
         });
     }
