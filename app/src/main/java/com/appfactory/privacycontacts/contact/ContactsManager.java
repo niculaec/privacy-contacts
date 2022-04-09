@@ -6,10 +6,11 @@ import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class ContactsManager {
+    //save a ref de tipul adaptor and save the contactList.
     private static final ContactsManager INSTANCE = new ContactsManager();
     private final ArrayList<Contact> contactsList = new ArrayList<Contact>();
     private final ContactRepository contactRepository = new ContactRepository();
-    public static final String ID = "id";
+    public static final String ID_KEY = "id";
 
 
     private ContactsManager() {
