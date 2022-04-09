@@ -53,6 +53,16 @@ public class AddNewContactActivity extends AppCompatActivity {
         emailAddressEditText = findViewById(R.id.editTextEmailAddress);
         userPicture = findViewById(R.id.userPicture);
 
+        Intent currentIntent = getIntent();
+        String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
+        contact = contactsManager.getContact(parsedID);
+        if (contact != null) {
+            personNameEditText.setText(contact.getName());
+            phoneNumberEditText.setText(contact.getPhoneNumber());
+            emailAddressEditText.setText(contact.getEmailAddress());
+            saveButton.setText("Update");
+        }
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
