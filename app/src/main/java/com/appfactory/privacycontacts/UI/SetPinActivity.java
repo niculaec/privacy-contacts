@@ -3,37 +3,34 @@ package com.appfactory.privacycontacts.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.pin.PinManager;
 
 public class SetPinActivity extends AppCompatActivity {
-    EditText enterPIN, confirmPIN;
-    Button savePIN;
-
-    PinManager pinManager = new PinManager();
+    EditText enterPinEditText, confirmPinEditText;
+    Button savePinButton;
+    PinManager pinManager = PinManager.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_pin);
-        enterPIN = findViewById(R.id.textEnterPin);
-        confirmPIN = findViewById(R.id.textConfirmPin);
-        savePIN = findViewById(R.id.buttonSetPinOk);
+        enterPinEditText = findViewById(R.id.textEnterPin);
+        confirmPinEditText = findViewById(R.id.textConfirmPin);
+        savePinButton = findViewById(R.id.buttonSetPinOk);
 
-        savePIN.setOnClickListener(new View.OnClickListener() {
+
+        savePinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String pinNumber = enterPIN.getText().toString();
-                if (!(pinNumber.equals(confirmPIN.getText().toString()))){
-                    confirmPIN.setError("Pin don't mach");
+                String pinNumber = enterPinEditText.getText().toString();
+                if (!(pinNumber.equals(confirmPinEditText.getText().toString()))){
+                    confirmPinEditText.setError("Pin don't mach");
                     return;
                 }
                 pinManager.registerPin(pinNumber);
