@@ -27,19 +27,21 @@ public class AddNewContactActivity extends AppCompatActivity {
     EditText personNameEditText, phoneNumberEditText, emailAddressEditText;
     ImageView userPicture;
     Uri imageUri;
+    Contact contact;
 
     // The new way from android x above to write onActivityResult.
     ActivityResultLauncher<Intent> startForResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-            if(result != null && result.getResultCode() == RESULT_OK){
-                if (result.getData()!=null) {
+            if (result != null && result.getResultCode() == RESULT_OK) {
+                if (result.getData() != null) {
                     userPicture.setImageURI(result.getData().getData());
                     imageUri = result.getData().getData();
                 }
             }
         }
     });
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,18 @@ public class AddNewContactActivity extends AppCompatActivity {
         emailAddressEditText = findViewById(R.id.editTextEmailAddress);
         userPicture = findViewById(R.id.userPicture);
 
+        Intent currentIntent = getIntent();
+        String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
+        contact = contactsManager.getContact(parsedID);
+
+        if (contact != null) {
+            personNameEditText.setText(contact.getName());
+            phoneNumberEditText.setText(contact.getPhoneNumber());
+            emailAddressEditText.setText(contact.getEmailAddress());
+            saveButton.setText("Update");
+        }
+
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,18 +74,21 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String personName = personNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
-                Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, imageUri.toString());
-                if (aContact == null){
-                    Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
-                    Logger.log("Contact information invalid.");
-                    return;
-                }
-                contactsManager.addContact(aContact);
 
+                if (contact != null) {
+                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, "");
+                } else {
+                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress,"");
+                    if (aContact == null) {
+                        Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
+                        Logger.log("Contact information invalid.");
+                        return;
+                    }
+                    contactsManager.addContact(aContact);
+                }
                 Toast.makeText(AddNewContactActivity.this, "Contact was saved.", Toast.LENGTH_LONG).show();
                 Logger.log("Contact was saved.");
                 finish();
-
             }
         });
 
@@ -79,7 +96,7 @@ public class AddNewContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish(); // This activity is finished once the user press cancelButton,
-                        // the android OS are taking the previous activity (ContactsList) from DDR memory and displayed on the screen.(Activity life cycle).
+                // the android OS are taking the previous activity (ContactsList) from DDR memory and displayed on the screen.(Activity life cycle).
             }
         });
 
