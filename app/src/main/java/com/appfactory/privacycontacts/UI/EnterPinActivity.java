@@ -14,26 +14,27 @@ import com.appfactory.privacycontacts.pin.PinManager;
 import com.appfactory.privacycontacts.pin.PinRepository;
 
 public class EnterPinActivity extends AppCompatActivity {
-    PinManager pinManager = new PinManager();
-    EditText textEnterPin;
+    PinManager pinManager = PinManager.getInstance();
+    EditText enterPinEditText;
     Button buttonOk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enter_pin);
-        textEnterPin = findViewById(R.id.textEnterPin);
+        enterPinEditText = findViewById(R.id.textEnterPin);
         buttonOk = findViewById(R.id.buttonLoginOk);
-
 
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (textEnterPin.getText() == null){
-                    Toast.makeText(EnterPinActivity.this, "Please enter a Pin.", Toast.LENGTH_SHORT).show();
+                String pinNumber = enterPinEditText.getText().toString();
+                if (!pinManager.loginWithPin(pinNumber)) {
+                    enterPinEditText.setError("Wrong Pin");
+                } else {
+                    Intent intent = new Intent(EnterPinActivity.this, ContactsListActivity.class);
+                    startActivity(intent);
                 }
-                Intent intent = new Intent(EnterPinActivity.this,ContactsListActivity.class);
-                startActivity(intent);
             }
         });
     }
