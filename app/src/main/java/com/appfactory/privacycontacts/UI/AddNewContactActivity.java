@@ -78,7 +78,7 @@ public class AddNewContactActivity extends AppCompatActivity {
                 if (contact != null) {
                     contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, "");
                 } else {
-                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, imageUri.toString());
+                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress,"");
                     if (aContact == null) {
                         Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
                         Logger.log("Contact information invalid.");
