@@ -26,10 +26,10 @@
             android:name=".UI.EnterPinActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.SetPinActivity"
+            android:name=".UI.ContactsListActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.ContactsListActivity"
+            android:name=".UI.SetPinActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
