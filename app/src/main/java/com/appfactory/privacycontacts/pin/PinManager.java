@@ -6,8 +6,9 @@ import com.appfactory.privacycontacts.utills.Logger;
 public class PinManager {
     private PinRepository pinRepository = new PinRepository();
 
-    boolean registerPin(String pinNumber) {
-        if (pinNumber != null) {
+    public boolean registerPin(String pinNumber) {
+        //TODO check pin contain only numbers
+        if (pinNumber != null && pinNumber.length() == 4 ) {
             pinRepository.savePinNumber(pinNumber);
             Logger.log("Pin number " + pinNumber + " is saved.");
             return true;
@@ -16,7 +17,7 @@ public class PinManager {
         return false;
     }
 
-    boolean loginWithPin(String pinNumber) {
+    public boolean loginWithPin(String pinNumber) {
         if (pinNumber.equals(pinRepository.readPinNumber())) {
             Logger.log("Successful login.");
             return true;
