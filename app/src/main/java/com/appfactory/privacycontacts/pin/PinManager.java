@@ -1,13 +1,29 @@
 package com.appfactory.privacycontacts.pin;
 
-
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class PinManager {
-    private PinRepository pinRepository = new PinRepository();
+    private final PinRepository pinRepository = new PinRepository();
+    private static final PinManager INSTANCE = new PinManager();
 
-    boolean registerPin(String pinNumber) {
-        if (pinNumber != null) {
+    private PinManager() {
+    }
+
+    public static PinManager getInstance(){
+        return INSTANCE;
+    }
+
+    public boolean registerPin(String pinNumber) {
+
+        boolean pinIsNumber;
+        try {
+            Integer.parseInt(pinNumber);
+            pinIsNumber = true;
+        } catch (Exception e) {
+            pinIsNumber = false;
+        }
+
+        if (pinNumber != null && pinNumber.length() == 4 && pinIsNumber) {
             pinRepository.savePinNumber(pinNumber);
             Logger.log("Pin number " + pinNumber + " is saved.");
             return true;
@@ -16,8 +32,8 @@ public class PinManager {
         return false;
     }
 
-    boolean loginWithPin(String pinNumber) {
-        if (pinNumber.equals(pinRepository.readPinNumber())) {
+    public boolean loginWithPin(String pinNumber) {
+        if (pinNumber != null && pinRepository.readPinNumber().equals(pinNumber)) {
             Logger.log("Successful login.");
             return true;
         }
