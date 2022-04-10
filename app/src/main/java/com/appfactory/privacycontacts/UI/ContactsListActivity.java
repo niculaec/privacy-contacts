@@ -26,7 +26,6 @@ public class ContactsListActivity extends AppCompatActivity {
     private ListView listView;
     FloatingActionButton fob;
 
-    Contact contact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,7 +35,6 @@ public class ContactsListActivity extends AppCompatActivity {
         fob = findViewById(R.id.floatingActionButtonAdd);
         setUpList();
         setUpOnclickListener();
-
         contactsManager.getAllContacts().sort(new Comparator<Contact>() {
             // usage of Comparator.class to sort the contacts list.
             @Override
@@ -46,15 +44,10 @@ public class ContactsListActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        listView.setAdapter(listView.getAdapter());
-    }
-
     private void setUpList() {
         listView = (ListView) findViewById(R.id.contactListView);
         ContactAdapter arrayAdapter = new ContactAdapter(this, 0, contactsManager.getAllContacts());
+        contactsManager.setArrayAdapter(arrayAdapter);
         listView.setAdapter(arrayAdapter);
     }
     private void setUpOnclickListener()
