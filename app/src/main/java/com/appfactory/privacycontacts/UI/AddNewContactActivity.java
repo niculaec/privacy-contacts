@@ -25,7 +25,7 @@ public class AddNewContactActivity extends AppCompatActivity {
     ContactsManager contactsManager = ContactsManager.getInstance();
     Button saveButton, cancelButton;
     EditText personNameEditText, phoneNumberEditText, emailAddressEditText;
-    ImageView userPicture;
+    ImageView userPictureImageView;
     Uri imageUri;
     Contact contact;
 
@@ -35,8 +35,9 @@ public class AddNewContactActivity extends AppCompatActivity {
         public void onActivityResult(ActivityResult result) {
             if (result != null && result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
-                    userPicture.setImageURI(result.getData().getData());
+                    userPictureImageView.setImageURI(result.getData().getData());
                     imageUri = result.getData().getData();
+
                 }
             }
         }
@@ -53,7 +54,7 @@ public class AddNewContactActivity extends AppCompatActivity {
         personNameEditText = findViewById(R.id.editTextPersonName);
         phoneNumberEditText = findViewById(R.id.editTextPhone);
         emailAddressEditText = findViewById(R.id.editTextEmailAddress);
-        userPicture = findViewById(R.id.userPicture);
+        userPictureImageView = findViewById(R.id.userPicture);
 
         Intent currentIntent = getIntent();
         String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
@@ -100,7 +101,7 @@ public class AddNewContactActivity extends AppCompatActivity {
             }
         });
 
-        userPicture.setOnClickListener(new View.OnClickListener() {
+        userPictureImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent();
