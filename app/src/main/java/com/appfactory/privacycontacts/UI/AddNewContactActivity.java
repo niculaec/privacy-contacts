@@ -75,11 +75,11 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String personName = personNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
-
+                String picture = imageUri.toString();
                 if (contact != null) {
-                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, "");
+                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, picture);
                 } else {
-                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress,"");
+                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, picture);
                     if (aContact == null) {
                         Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
                         Logger.log("Contact information invalid.");
