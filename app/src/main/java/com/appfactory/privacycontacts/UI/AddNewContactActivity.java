@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,6 +63,7 @@ public class AddNewContactActivity extends AppCompatActivity {
             personNameEditText.setText(contact.getName());
             phoneNumberEditText.setText(contact.getPhoneNumber());
             emailAddressEditText.setText(contact.getEmailAddress());
+            userPictureImageView.setImageURI(imageUri);
             saveButton.setText("Update");
         }
 
