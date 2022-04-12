@@ -3,6 +3,7 @@ package com.appfactory.privacycontacts.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -98,6 +99,6 @@ public class ContactDetailsActivity extends AppCompatActivity {
         personNameTextView.setText(contact.getName());
         phoneNumberTextView.setText(contact.getPhoneNumber());
         emailAddressTextView.setText(contact.getEmailAddress());
-        //userPicture.setImageResource(Integer.parseInt(contact.getUserPicture()));
+        userPicture.setImageURI(Uri.parse(contact.getUserPicture()));
     }
 }
