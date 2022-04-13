@@ -1,9 +1,18 @@
 package com.appfactory.privacycontacts.utills;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.widget.Toast;
+
+import com.appfactory.privacycontacts.R;
+import com.appfactory.privacycontacts.UI.ContactDetailsActivity;
+
+import java.lang.reflect.Array;
 
 public class PhoneInteractor {
     PermissionsManager permissionsManager;
@@ -36,10 +45,17 @@ public class PhoneInteractor {
         Logger.log("Message has been sent");
     }
 
+
     public void sendEmail(String emailAddress) {
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:" + emailAddress));
-        context.startActivity(emailIntent);
-        Logger.log("Email has been sent");
+        try {
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});// we create an String Array and initialise in line with email address
+            context.startActivity(emailIntent);
+            Logger.log("Email intent has been sent");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
