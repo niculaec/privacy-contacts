@@ -17,12 +17,12 @@ public class ContactsManager {
 
 
     private ContactsManager() {
-        Contact contact1 = Contact.Builder.createContact("Sergiu","077777777","asd@yahoo.com","25544103354");
-        Contact contact2 = Contact.Builder.createContact("Mama","077777777","asd@yahoo.com","25544103354");
-        Contact contact3 = Contact.Builder.createContact("Alex","077773333","bad@yahoo.com","255441033333");
-        addContact(contact1);
-        addContact(contact2);
-        addContact(contact3);
+//        Contact contact1 = Contact.Builder.createContact("Sergiu","077777777","asd@yahoo.com","25544103354");
+//        Contact contact2 = Contact.Builder.createContact("Mama","077777777","asd@yahoo.com","25544103354");
+//        Contact contact3 = Contact.Builder.createContact("Alex","077773333","bad@yahoo.com","255441033333");
+//        addContact(contact1);
+//        addContact(contact2);
+//        addContact(contact3);
     }
 
     public static ContactsManager getInstance(){
