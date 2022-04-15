@@ -35,8 +35,7 @@ public class PhoneInteractor {
         context.startActivity(smsIntent);
         Logger.log("Message has been sent");
     }
-
-
+    
     public void sendEmail(String emailAddress) {
         try {
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
