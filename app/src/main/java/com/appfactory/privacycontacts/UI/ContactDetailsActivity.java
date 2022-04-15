@@ -30,7 +30,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_details);
 
-        personNameTextView = (TextView) findViewById(R.id.personNameTextView);
+        personNameTextView = (TextView) findViewById(R.id.personNameTextViewSingleItem);
         phoneNumberTextView = findViewById(R.id.phoneTextView);
         emailAddressTextView = findViewById(R.id.emailAddressTextView);
         iconCall = findViewById(R.id.iconCall);
