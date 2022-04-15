@@ -18,6 +18,7 @@ public class LandingActivity extends AppCompatActivity {
             Intent intent = new Intent(LandingActivity.this, EnterPinActivity.class);
             startActivity(intent);
             finish();
+            return;
         }
 
         Intent intentSetPin = new Intent(LandingActivity.this, SetPinActivity.class);
