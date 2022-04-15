@@ -15,12 +15,13 @@ import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.contact.Contact;
 import com.appfactory.privacycontacts.contact.ContactsManager;
 import com.appfactory.privacycontacts.utills.PhoneInteractor;
+import com.appfactory.privacycontacts.utills.Utils;
 
 public class ContactDetailsActivity extends AppCompatActivity {
     ContactsManager contactsManager = ContactsManager.getInstance();
     PhoneInteractor phoneInteractor = new PhoneInteractor(this);
 
-    ImageView iconCall, iconMessage, iconEmail, userPicture;
+    ImageView iconCall, iconMessage, iconEmail, userPictureImageView;
     Button deleteButton, editButton;
     TextView personNameTextView, phoneNumberTextView, emailAddressTextView;
     Contact contact;
@@ -38,7 +39,7 @@ public class ContactDetailsActivity extends AppCompatActivity {
         iconEmail = findViewById(R.id.iconEmail);
         deleteButton = findViewById(R.id.buttonDelete);
         editButton = findViewById(R.id.buttonEdit);
-        userPicture = (ImageView) findViewById(R.id.userPicture);
+        userPictureImageView = (ImageView) findViewById(R.id.userPicture);
 
         iconCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,11 +95,14 @@ public class ContactDetailsActivity extends AppCompatActivity {
         String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
         contact = contactsManager.getContact(parsedID);
     }
-
+    
     private void setValues() {
         personNameTextView.setText(contact.getName());
         phoneNumberTextView.setText(contact.getPhoneNumber());
         emailAddressTextView.setText(contact.getEmailAddress());
-        userPicture.setImageURI(Uri.parse(contact.getUserPicture()));
+        if(!contact.getUserPicture().isEmpty()){
+            userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));
+        }
+
     }
 }
