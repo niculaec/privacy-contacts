@@ -1,18 +1,9 @@
 package com.appfactory.privacycontacts.utills;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.widget.Toast;
-
-import com.appfactory.privacycontacts.R;
-import com.appfactory.privacycontacts.UI.ContactDetailsActivity;
-
-import java.lang.reflect.Array;
 
 public class PhoneInteractor {
     PermissionsManager permissionsManager;
