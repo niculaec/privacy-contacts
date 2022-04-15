@@ -1,5 +1,6 @@
 package com.appfactory.privacycontacts.utills;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -12,10 +13,18 @@ import java.io.ByteArrayOutputStream;
 
 public class Utils {
 
-    public static String getBase64FromUri(Uri uri) {
+    /**
+     * Serialize the user picture from an Uri
+     * @param uri user picture uri
+     * @param context provided context
+     * @return String Base64 representation of user picture.
+     */
+    public static String getBase64FromUri(Uri uri, Context context) {
         try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(AddNewContactActivity.this.getContentResolver(), uri);// getting the Bitmap from mediaStore
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);// getting the Bitmap from mediaStore
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();//creating an Array of bytes
+            bitmap.setWidth(400);
+            bitmap.setHeight(400);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);// compress the data to PNG format and keep the 100% quality
             byte[] byteArray = outputStream.toByteArray();
             return Base64.encodeToString(byteArray, Base64.DEFAULT);// encode the base64 to string
@@ -24,8 +33,13 @@ public class Utils {
         }
     }
 
-    public static Bitmap getBitmapFromBase64(String base64){// deserializer the user picture from bytes to string
-        byte[] decodedString = Base64.decode(base64, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);// decode the byte array to string
+    /**
+     * Deserialize the user picture from bytes to string.
+     * @param pictureBase64 representation of the image
+     * @return The decoded the byte array into a bitmap
+     */
+    public static Bitmap getBitmapFromBase64(String pictureBase64){
+        byte[] decodedString = Base64.decode(pictureBase64, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
 }
