@@ -10,6 +10,7 @@ import android.widget.EditText;
 
 import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.pin.PinManager;
+import com.appfactory.privacycontacts.pin.PinRepository;
 
 public class SetPinActivity extends AppCompatActivity {
     EditText enterPinEditText, confirmPinEditText;
@@ -33,25 +34,14 @@ public class SetPinActivity extends AppCompatActivity {
                     confirmPinEditText.setError("Pin don't mach");
                     return;
                 }
-                pinManager.registerPin(pinNumber);
-                Intent intent = new Intent(SetPinActivity.this,EnterPinActivity.class);
-                startActivity(intent);
+                if(pinManager.registerPin(pinNumber)){
+                    Intent intent = new Intent(SetPinActivity.this,ContactsListActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    confirmPinEditText.setError("Pin not valid, use only 4 digits number");
+                }
             }
         });
     }
 }
-// This code is good for pinRepository!
-//SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-//                SharedPreferences.Editor editor = pref.edit();
-//                editor.putString("PIN", pinNumber);
-//                editor.apply();
-
-// try {
-//         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-//         String password = preferences.getString("PIN", "");
-//         if (!password.isEmpty()) {
-//         Toast.makeText(SetPinActivity.this, "Set a PIN number.", Toast.LENGTH_LONG).show();
-//         }
-//         } catch (Exception e) {
-//         e.printStackTrace();
-//         }
