@@ -35,8 +35,9 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         TextView textViewName = convertView.findViewById(R.id.personNameTextViewSingleItem);
         ImageView imageViewUserPicture = convertView.findViewById(R.id.imageViewContactSingleItem);
         textViewName.setText(contact.getName());
-        imageViewUserPicture.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));
-
+        if(!contact.getUserPicture().isEmpty()){
+            imageViewUserPicture.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));
+        }
         return convertView;
     }
 }
