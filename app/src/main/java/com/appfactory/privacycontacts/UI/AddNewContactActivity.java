@@ -7,7 +7,6 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,13 +18,14 @@ import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.contact.Contact;
 import com.appfactory.privacycontacts.contact.ContactsManager;
 import com.appfactory.privacycontacts.utills.Logger;
+import com.appfactory.privacycontacts.utills.Utils;
 
 public class AddNewContactActivity extends AppCompatActivity {
     ContactsManager contactsManager = ContactsManager.getInstance();
     Button saveButton, cancelButton;
     EditText personNameEditText, phoneNumberEditText, emailAddressEditText;
     ImageView userPictureImageView;
-    Uri imageUri;
+    String userPictureBase64;
     Contact contact;
 
     // The new way from android x above to write onActivityResult.
@@ -35,8 +35,7 @@ public class AddNewContactActivity extends AppCompatActivity {
             if (result != null && result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
                     userPictureImageView.setImageURI(result.getData().getData());
-                    imageUri = result.getData().getData();
-
+                    userPictureBase64 = Utils.getBase64FromUri(result.getData().getData(),AddNewContactActivity.this );
                 }
             }
         }
@@ -63,7 +62,9 @@ public class AddNewContactActivity extends AppCompatActivity {
             personNameEditText.setText(contact.getName());
             phoneNumberEditText.setText(contact.getPhoneNumber());
             emailAddressEditText.setText(contact.getEmailAddress());
-            userPictureImageView.setImageURI(imageUri);
+
+            if(!contact.getUserPicture().isEmpty()){
+                userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));}
             saveButton.setText("Update");
         }
 
@@ -75,11 +76,10 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String personName = personNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
-                String picture = imageUri.toString();
                 if (contact != null) {
-                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, picture);
+                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, userPictureBase64);
                 } else {
-                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, picture);
+                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, userPictureBase64);
                     if (aContact == null) {
                         Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
                         Logger.log("Contact information invalid.");
