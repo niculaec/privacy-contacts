@@ -23,8 +23,8 @@ public class Utils {
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);// getting the Bitmap from mediaStore
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();//creating an Array of bytes
-            bitmap.setWidth(400);
-            bitmap.setHeight(400);
+           // bitmap.setWidth(400);
+           // bitmap.setHeight(400);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);// compress the data to PNG format and keep the 100% quality
             byte[] byteArray = outputStream.toByteArray();
             return Base64.encodeToString(byteArray, Base64.DEFAULT);// encode the base64 to string
