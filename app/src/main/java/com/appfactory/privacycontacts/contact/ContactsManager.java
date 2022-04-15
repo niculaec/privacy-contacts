@@ -8,7 +8,7 @@ import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class ContactsManager {
-    //save a ref de tipul adaptor and save the contactList.
+    //save a ref of Adapter type and save the contactList.
     private static final ContactsManager INSTANCE = new ContactsManager();
     private final ArrayList<Contact> contactsList = new ArrayList<Contact>();
     private final ContactRepository contactRepository = new ContactRepository();
@@ -17,12 +17,12 @@ public class ContactsManager {
 
 
     private ContactsManager() {
-//        Contact contact1 = Contact.Builder.createContact("Sergiu","077777777","asd@yahoo.com","25544103354");
-//        Contact contact2 = Contact.Builder.createContact("Mama","077777777","asd@yahoo.com","25544103354");
-//        Contact contact3 = Contact.Builder.createContact("Alex","077773333","bad@yahoo.com","255441033333");
-//        addContact(contact1);
-//        addContact(contact2);
-//        addContact(contact3);
+        Contact contact1 = Contact.Builder.createContact("Sergiu","077777777","asd@yahoo.com","");
+        Contact contact2 = Contact.Builder.createContact("Mama","077777777","asd@yahoo.com","");
+        Contact contact3 = Contact.Builder.createContact("Alex","077773333","bad@yahoo.com","");
+        addContact(contact1);
+        addContact(contact2);
+        addContact(contact3);
     }
 
     public static ContactsManager getInstance(){
@@ -62,6 +62,10 @@ public class ContactsManager {
         return newContact;
     }
 
+    /**
+     * Remove the selected contact from contactsList
+     * @param aContact remove aContact from the list
+     */
     public void removeContact(Contact aContact) {
         contactsList.remove(aContact);
         contactRepository.removeContact(aContact);
@@ -69,7 +73,11 @@ public class ContactsManager {
         Logger.log(this + " removeContact\n The " + aContact + " \n Was successfully removed from the contacts list.");
     }
 
-    //Please add method getContact.
+    /**
+     * To get a contact from contactList.
+     * @param id compare the contact Id with id.
+     * @return a contact or null
+     */
     public Contact getContact(String id){
         for (Contact contact :contactsList) {
             if (contact.getId().equals(id))
@@ -78,6 +86,10 @@ public class ContactsManager {
         return null;
     }
 
+    /**
+     * Getting all contacts from contactList
+     * @return a list of contacts
+     */
     public ArrayList<Contact> getAllContacts() {
         if(contactsList.isEmpty()){
             ArrayList<Contact> repoContacts = contactRepository.getAllContacts();
