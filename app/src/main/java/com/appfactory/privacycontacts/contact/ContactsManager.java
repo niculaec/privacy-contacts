@@ -74,7 +74,7 @@ public class ContactsManager {
     }
 
     /**
-     * To get a contact from contactList.
+     * To get a contact.
      * @param id compare the contact Id with id.
      * @return a contact or null
      */
