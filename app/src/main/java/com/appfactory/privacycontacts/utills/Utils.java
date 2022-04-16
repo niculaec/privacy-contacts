@@ -13,6 +13,7 @@ import java.io.ByteArrayOutputStream;
 
 public class Utils {
 
+
     /**
      * Serialize the user picture from an Uri
      *
@@ -24,9 +25,8 @@ public class Utils {
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);// getting the Bitmap from mediaStore
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();//creating an Array of bytes
-            //TODO         // bitmap.setWidth(400);
-            //TODO         // bitmap.setHeight(400);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);// compress the data to PNG format and keep the 100% quality
+            Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 400, 400, false);
+            scaledBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);// compress the data to PNG format and keep the 100% quality
             byte[] byteArray = outputStream.toByteArray();
             return Base64.encodeToString(byteArray, Base64.DEFAULT);// encode the base64 to string
         } catch (Exception e) {

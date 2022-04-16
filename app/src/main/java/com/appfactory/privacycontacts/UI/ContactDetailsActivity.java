@@ -46,15 +46,20 @@ public class ContactDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phoneInteractor.makeCall(contact.getPhoneNumber());
-                Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
             }
         });
 
         iconMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phoneInteractor.sendMessage(contact.getPhoneNumber());
-                Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
+                if (contact.getPhoneNumber().isEmpty()) {
+                    new AlertDialog.Builder(ContactDetailsActivity.this)
+                            .setMessage("To send a message, enter a valid number.")
+                            .setPositiveButton(android.R.string.ok,null)
+                            .show();
+                } else {
+                    phoneInteractor.sendMessage(contact.getPhoneNumber());
+                }
             }
         });
 
@@ -62,7 +67,6 @@ public class ContactDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phoneInteractor.sendEmail(contact.getEmailAddress());
-                Toast.makeText(ContactDetailsActivity.this, "Icon clickable test.", Toast.LENGTH_LONG).show();
             }
         });
 

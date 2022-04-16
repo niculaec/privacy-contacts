@@ -34,8 +34,8 @@ public class AddNewContactActivity extends AppCompatActivity {
         public void onActivityResult(ActivityResult result) {
             if (result != null && result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
-                    userPictureImageView.setImageURI(result.getData().getData());
                     userPictureBase64 = Utils.getBase64FromUri(result.getData().getData(), AddNewContactActivity.this);
+                    userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(userPictureBase64));
                 }
             }
         }
@@ -77,6 +77,9 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String personName = personNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
+                if(userPictureBase64 == null){
+                    userPictureBase64 = "";
+                }
                 if (contact != null) {
                     contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, userPictureBase64);
                 } else {
