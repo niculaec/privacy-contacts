@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.appfactory.privacycontacts">
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACTION_SEND"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    package="com.appfactory.privacycontacts" >
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACTION_SEND" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+<!--ContactApplication was added to inform OS to use the class as application singleton.-->
     <application
+        android:name=".ContactsApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar" >
+        <activity
+            android:name=".UI.SetPinActivity"
+            android:exported="false" />
         <activity
             android:name=".UI.AddNewContactActivity"
             android:exported="false" />
@@ -29,8 +34,8 @@
             android:name=".UI.ContactsListActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.SetPinActivity"
-            android:exported="true">
+            android:name=".UI.LandingActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

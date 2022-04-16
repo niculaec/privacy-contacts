@@ -3,13 +3,14 @@ package com.appfactory.privacycontacts.pin;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class PinManager {
+
     private final PinRepository pinRepository = new PinRepository();
     private static final PinManager INSTANCE = new PinManager();
 
     private PinManager() {
     }
 
-    public static PinManager getInstance(){
+    public static PinManager getInstance() {
         return INSTANCE;
     }
 
@@ -30,6 +31,10 @@ public class PinManager {
         }
         Logger.log("Pin number not saved. ");
         return false;
+    }
+
+    public boolean isRegistered() {
+        return !pinRepository.readPinNumber().isEmpty();
     }
 
     public boolean loginWithPin(String pinNumber) {
