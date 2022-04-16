@@ -3,6 +3,7 @@ package com.appfactory.privacycontacts.pin;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class PinRepository {
@@ -10,11 +11,11 @@ public class PinRepository {
     private static Application APPLICATION;
 
 
-    public static void setApplication(Application application){
+    public static void setApplication(Application application) {
         APPLICATION = application;
     }
 
-    public void savePinNumber(String pinNumber){
+    public void savePinNumber(String pinNumber) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(APPLICATION);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(PIN_KEY, pinNumber);
@@ -22,7 +23,7 @@ public class PinRepository {
         Logger.log("Pin number was saved in Repository.");
     }
 
-    public String readPinNumber(){
+    public String readPinNumber() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(APPLICATION);
         String password = preferences.getString(PIN_KEY, "");
         Logger.log("Pin number was successfully read from Repository.");

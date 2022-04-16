@@ -30,15 +30,14 @@ public class SetPinActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String pinNumber = enterPinEditText.getText().toString();
-                if (!(pinNumber.equals(confirmPinEditText.getText().toString()))){
+                if (!(pinNumber.equals(confirmPinEditText.getText().toString()))) {
                     confirmPinEditText.setError("Pin don't mach");
                     return;
                 }
-                if(pinManager.registerPin(pinNumber)){
-                    Intent intent = new Intent(SetPinActivity.this,ContactsListActivity.class);
+                if (pinManager.registerPin(pinNumber)) {
+                    Intent intent = new Intent(SetPinActivity.this, ContactsListActivity.class);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     confirmPinEditText.setError("Pin not valid, use only 4 digits number");
                 }
             }

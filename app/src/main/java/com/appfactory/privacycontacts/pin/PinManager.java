@@ -10,7 +10,7 @@ public class PinManager {
     private PinManager() {
     }
 
-    public static PinManager getInstance(){
+    public static PinManager getInstance() {
         return INSTANCE;
     }
 
@@ -33,7 +33,7 @@ public class PinManager {
         return false;
     }
 
-    public boolean isRegistered(){
+    public boolean isRegistered() {
         return !pinRepository.readPinNumber().isEmpty();
     }
 
