@@ -35,7 +35,7 @@ public class AddNewContactActivity extends AppCompatActivity {
             if (result != null && result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
                     userPictureImageView.setImageURI(result.getData().getData());
-                    userPictureBase64 = Utils.getBase64FromUri(result.getData().getData(),AddNewContactActivity.this );
+                    userPictureBase64 = Utils.getBase64FromUri(result.getData().getData(), AddNewContactActivity.this);
                 }
             }
         }
@@ -63,8 +63,9 @@ public class AddNewContactActivity extends AppCompatActivity {
             phoneNumberEditText.setText(contact.getPhoneNumber());
             emailAddressEditText.setText(contact.getEmailAddress());
 
-            if(!contact.getUserPicture().isEmpty()){
-                userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));}
+            if (!contact.getUserPicture().isEmpty()) {
+                userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));
+            }
             saveButton.setText("Update");
         }
 
