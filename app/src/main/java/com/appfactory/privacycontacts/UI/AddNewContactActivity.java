@@ -7,9 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,13 +18,14 @@ import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.contact.Contact;
 import com.appfactory.privacycontacts.contact.ContactsManager;
 import com.appfactory.privacycontacts.utills.Logger;
+import com.appfactory.privacycontacts.utills.Utils;
 
 public class AddNewContactActivity extends AppCompatActivity {
     ContactsManager contactsManager = ContactsManager.getInstance();
     Button saveButton, cancelButton;
     EditText personNameEditText, phoneNumberEditText, emailAddressEditText;
-    ImageView userPicture;
-    Uri imageUri;
+    ImageView userPictureImageView;
+    String userPictureBase64;
     Contact contact;
 
     // The new way from android x above to write onActivityResult.
@@ -35,8 +34,8 @@ public class AddNewContactActivity extends AppCompatActivity {
         public void onActivityResult(ActivityResult result) {
             if (result != null && result.getResultCode() == RESULT_OK) {
                 if (result.getData() != null) {
-                    userPicture.setImageURI(result.getData().getData());
-                    imageUri = result.getData().getData();
+                    userPictureBase64 = Utils.getBase64FromUri(result.getData().getData(), AddNewContactActivity.this);
+                    userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(userPictureBase64));
                 }
             }
         }
@@ -53,7 +52,7 @@ public class AddNewContactActivity extends AppCompatActivity {
         personNameEditText = findViewById(R.id.editTextPersonName);
         phoneNumberEditText = findViewById(R.id.editTextPhone);
         emailAddressEditText = findViewById(R.id.editTextEmailAddress);
-        userPicture = findViewById(R.id.userPicture);
+        userPictureImageView = findViewById(R.id.userPicture);
 
         Intent currentIntent = getIntent();
         String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
@@ -63,6 +62,10 @@ public class AddNewContactActivity extends AppCompatActivity {
             personNameEditText.setText(contact.getName());
             phoneNumberEditText.setText(contact.getPhoneNumber());
             emailAddressEditText.setText(contact.getEmailAddress());
+
+            if (!contact.getUserPicture().isEmpty()) {
+                userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));
+            }
             saveButton.setText("Update");
         }
 
@@ -74,11 +77,13 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String personName = personNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
-
+                if(userPictureBase64 == null){
+                    userPictureBase64 = "";
+                }
                 if (contact != null) {
-                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, "");
+                    contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, userPictureBase64);
                 } else {
-                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress,"");
+                    Contact aContact = Contact.Builder.createContact(personName, phoneNumber, emailAddress, userPictureBase64);
                     if (aContact == null) {
                         Toast.makeText(AddNewContactActivity.this, "Contact information invalid.", Toast.LENGTH_LONG).show();
                         Logger.log("Contact information invalid.");
@@ -88,6 +93,8 @@ public class AddNewContactActivity extends AppCompatActivity {
                 }
                 Toast.makeText(AddNewContactActivity.this, "Contact was saved.", Toast.LENGTH_LONG).show();
                 Logger.log("Contact was saved.");
+                Intent contactsListIntent = new Intent(AddNewContactActivity.this, ContactsListActivity.class);
+                startActivity(contactsListIntent);
                 finish();
             }
         });
@@ -100,7 +107,7 @@ public class AddNewContactActivity extends AppCompatActivity {
             }
         });
 
-        userPicture.setOnClickListener(new View.OnClickListener() {
+        userPictureImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent galleryIntent = new Intent();

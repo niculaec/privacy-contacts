@@ -63,9 +63,9 @@ public class Contact {
         }
 
         private static boolean checkValidParams(String name, String phoneNumber, String emailAddress, String userPicture) {
-            if (name == null &&
-                    phoneNumber == null &&
-                    emailAddress == null &&
+            if (name == null || name.isEmpty() ||
+                    phoneNumber == null ||
+                    emailAddress == null ||
                     userPicture == null) {
                 return false;
             }

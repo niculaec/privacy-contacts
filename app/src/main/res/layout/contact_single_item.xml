@@ -10,28 +10,30 @@
     android:paddingTop="5dp">
 
     <ImageView
-        android:id="@+id/ImageViewContact"
+        android:id="@+id/imageViewContactSingleItem"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_margin="8dp"
-        android:layout_marginEnd="10dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="Contact picture"
         android:padding="3dp"
         android:src="@drawable/logo"
-        android:layout_centerVertical="true"
-        android:contentDescription="Contact picture"
-        app:layout_constraintEnd_toStartOf="@+id/personNameTextView"
+        app:layout_constraintEnd_toStartOf="@+id/personNameTextViewSingleItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
     <!--text view for displaying user name-->
     <TextView
-        android:id="@+id/personNameTextView"
+        android:id="@+id/personNameTextViewSingleItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginTop="16dp"
-        android:layout_toRightOf="@id/ImageViewContact"
+        android:layout_toRightOf="@id/imageViewContactSingleItem"
         android:text="Contact Name"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
