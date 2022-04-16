@@ -90,6 +90,8 @@ public class AddNewContactActivity extends AppCompatActivity {
                 }
                 Toast.makeText(AddNewContactActivity.this, "Contact was saved.", Toast.LENGTH_LONG).show();
                 Logger.log("Contact was saved.");
+                Intent contactsListIntent = new Intent(AddNewContactActivity.this, ContactsListActivity.class);
+                startActivity(contactsListIntent);
                 finish();
             }
         });
