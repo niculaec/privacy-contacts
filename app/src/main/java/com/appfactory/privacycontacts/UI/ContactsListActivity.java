@@ -28,8 +28,7 @@ public class ContactsListActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_list_view);
         fob = findViewById(R.id.floatingActionButtonAdd);
@@ -50,15 +49,14 @@ public class ContactsListActivity extends AppCompatActivity {
         contactsManager.setArrayAdapter(arrayAdapter);
         listView.setAdapter(arrayAdapter);
     }
-    private void setUpOnclickListener()
-    {
+
+    private void setUpOnclickListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
-            {
-                Contact selectedContact =(Contact) listView.getItemAtPosition(position);
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Contact selectedContact = (Contact) listView.getItemAtPosition(position);
                 Intent contactDetailIntent = new Intent(ContactsListActivity.this, ContactDetailsActivity.class);
-                contactDetailIntent.putExtra(ContactsManager.ID_KEY,selectedContact.getId());
+                contactDetailIntent.putExtra(ContactsManager.ID_KEY, selectedContact.getId());
                 startActivity(contactDetailIntent);
             }
         });
@@ -66,7 +64,7 @@ public class ContactsListActivity extends AppCompatActivity {
         fob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ContactsListActivity.this,AddNewContactActivity.class);
+                Intent intent = new Intent(ContactsListActivity.this, AddNewContactActivity.class);
                 startActivity(intent);
             }
         });
