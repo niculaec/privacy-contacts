@@ -111,12 +111,12 @@ public class ContactDetailsActivity extends AppCompatActivity {
         String parsedID = currentIntent.getStringExtra(ContactsManager.ID_KEY);
         contact = contactsManager.getContact(parsedID);
     }
-    
+
     private void setValues() {
         personNameTextView.setText(contact.getName());
         phoneNumberTextView.setText(contact.getPhoneNumber());
         emailAddressTextView.setText(contact.getEmailAddress());
-        if(!contact.getUserPicture().isEmpty()){
+        if (!contact.getUserPicture().isEmpty()) {
             userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));
         }
 
