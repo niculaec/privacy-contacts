@@ -15,7 +15,8 @@ public class Utils {
 
     /**
      * Serialize the user picture from an Uri
-     * @param uri user picture uri
+     *
+     * @param uri     user picture uri
      * @param context provided context
      * @return String Base64 representation of user picture.
      */
@@ -23,22 +24,23 @@ public class Utils {
         try {
             Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), uri);// getting the Bitmap from mediaStore
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();//creating an Array of bytes
-           // bitmap.setWidth(400);
-           // bitmap.setHeight(400);
+            //TODO         // bitmap.setWidth(400);
+            //TODO         // bitmap.setHeight(400);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);// compress the data to PNG format and keep the 100% quality
             byte[] byteArray = outputStream.toByteArray();
             return Base64.encodeToString(byteArray, Base64.DEFAULT);// encode the base64 to string
-        }catch (Exception e){
+        } catch (Exception e) {
             return "";// return an empty string
         }
     }
 
     /**
      * Deserialize the user picture from bytes to string.
+     *
      * @param pictureBase64 representation of the image
      * @return The decoded the byte array into a bitmap
      */
-    public static Bitmap getBitmapFromBase64(String pictureBase64){
+    public static Bitmap getBitmapFromBase64(String pictureBase64) {
         byte[] decodedString = Base64.decode(pictureBase64, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
