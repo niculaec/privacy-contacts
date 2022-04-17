@@ -73,12 +73,16 @@ public class Contact  {
 
     public static class Builder {
 
-
-        public static Contact createContact(String name, String phoneNumber, String emailAddress, String userPicture) {
+        public static Contact createContact(String id, String name, String phoneNumber, String emailAddress, String userPicture) {
             if (!checkValidParams(name, phoneNumber, emailAddress, userPicture)) {
                 return null;
             }
-            return new Contact(name, phoneNumber, emailAddress, userPicture, UUID.randomUUID().toString());
+            return new Contact(name, phoneNumber, emailAddress, userPicture, id);
+        }
+
+        public static Contact createContact(String name, String phoneNumber, String emailAddress, String userPicture) {
+            return createContact(UUID.randomUUID().toString(),name,phoneNumber,emailAddress,userPicture);
+
         }
 
         private static boolean checkValidParams(String name, String phoneNumber, String emailAddress, String userPicture) {
