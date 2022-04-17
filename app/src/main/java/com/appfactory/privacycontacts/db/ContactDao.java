@@ -4,21 +4,24 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.appfactory.privacycontacts.contact.Contact;
 
 import java.util.ArrayList;
+import java.util.List;
+
 @Dao
 public interface ContactDao {
-    @Query("SELECT * FROM contact")
-    ArrayList<Contact> getAll();
-
-    @Query("SELECT * FROM contact WHERE name IN (:name)")
-    ArrayList<Contact> loadAllByName (int [] name);
+    @Query("SELECT * FROM contactentity")
+    List<ContactEntity> getAll();
 
     @Insert
-    void  insertAll (Contact...contacts);
+    void insertAll(ContactEntity...contactEntities);
+
+    @Update
+    void update(ContactEntity contactEntities);
 
     @Delete
-    void delete (Contact contact);
+    void delete(ContactEntity contactEntity);
 }
