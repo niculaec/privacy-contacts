@@ -92,9 +92,8 @@ public class Contact  {
         }
 
         public static Contact createUpdatedContact(Contact oldContact, String name, String phoneNumber, String emailAddress, String userPicture) {
-            if (!checkValidParams(name, phoneNumber, emailAddress, userPicture) &&
-                    oldContact.id == null) {
-
+            if (!checkValidParams(name, phoneNumber, emailAddress, userPicture)) {
+                return null;
             }
             return new Contact(name, phoneNumber, emailAddress, userPicture, oldContact.id);
         }
