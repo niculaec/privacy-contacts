@@ -1,35 +1,20 @@
 package com.appfactory.privacycontacts.contact;
 
-
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
+
 import java.util.UUID;
 
-@Entity
+
 public class Contact  {
 
-    @ColumnInfo
-    private static final String savedId = UUID.randomUUID().toString();
-    @ColumnInfo
     private final String name;
-
-    @ColumnInfo
     private final String phoneNumber;
-
-    @ColumnInfo
     private final String emailAddress;
-
-    @ColumnInfo
     private final String userPicture;
-
-    @PrimaryKey
     @NonNull
     private final String id;
 
-    @Ignore
+
     private Contact(String name, String phoneNumber, String emailAddress, String userPicture, @NonNull String id) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -66,6 +51,7 @@ public class Contact  {
         return userPicture;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
