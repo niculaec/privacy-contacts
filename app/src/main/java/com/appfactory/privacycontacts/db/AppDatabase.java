@@ -1,14 +1,9 @@
 package com.appfactory.privacycontacts.db;
 
 import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
-import com.appfactory.privacycontacts.contact.Contact;
-import com.google.android.gms.wearable.DataItem;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,7 +14,7 @@ public abstract class AppDatabase  extends RoomDatabase {// AppDatabase is a sub
 
         private static volatile AppDatabase INSTANCE;
         private static final int NUMBER_OF_THREADS = 4;
-        static final ExecutorService databaseWriteExecutor =
+        public static final ExecutorService DATABASE_EXECUTOR =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
         public static AppDatabase getInstance(Context context){
