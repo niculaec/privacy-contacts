@@ -30,14 +30,17 @@ public class ContactsManager {
         Logger.log("The contact " + aContact + " was successfully added to the contacts list.");
     }
 
-    public void notifyAdapter(){
-        if(arrayAdapter != null){
-            arrayAdapter.notifyDataSetChanged();
+    public void notifyAdapter() {
+        if (arrayAdapterWeakReference != null) {
+            ContactAdapter contactAdapter = arrayAdapterWeakReference.get();
+            if (contactAdapter != null) {
+                contactAdapter.notifyDataSetChanged();
+            }
         }
     }
 
-    public void setArrayAdapter(ArrayAdapter arrayAdapter){
-        this.arrayAdapter = arrayAdapter;
+    public void setArrayAdapter(ContactAdapter contactAdapter) {
+        this.arrayAdapterWeakReference = new WeakReference<ContactAdapter>(contactAdapter);
     }
 
     public Contact updateContact(Contact aContact, String name, String phoneNUmber, String emailAddress, String userPicture) {
