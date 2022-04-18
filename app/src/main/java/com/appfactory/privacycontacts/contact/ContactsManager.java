@@ -1,10 +1,9 @@
 package com.appfactory.privacycontacts.contact;
 
-import android.widget.ArrayAdapter;
-
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-import com.appfactory.privacycontacts.R;
+import com.appfactory.privacycontacts.ContactAdapter;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class ContactsManager {
@@ -61,6 +60,7 @@ public class ContactsManager {
 
     /**
      * Remove the selected contact from contactsList
+     *
      * @param aContact remove aContact from the list
      */
     public void removeContact(Contact aContact) {
@@ -72,11 +72,12 @@ public class ContactsManager {
 
     /**
      * To get a contact.
+     *
      * @param id compare the contact Id with id.
      * @return a contact or null
      */
-    public Contact getContact(String id){
-        for (Contact contact :contactsList) {
+    public Contact getContact(String id) {
+        for (Contact contact : contactsList) {
             if (contact.getId().equals(id))
                 return contact;
         }
