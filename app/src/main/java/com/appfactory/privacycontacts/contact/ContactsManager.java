@@ -85,13 +85,21 @@ public class ContactsManager {
 
     /**
      * Getting all contacts from contactList
+     *
      * @return a list of contacts
      */
-    public ArrayList<Contact> getAllContacts() {
-        if(contactsList.isEmpty()){
-            ArrayList<Contact> repoContacts = contactRepository.getAllContacts();
-            contactsList.addAll(repoContacts);
+    public void getAllContacts(ContactRepository.ContactsCallBack contactsCallBack) {
+        if (contactsList.isEmpty()) {
+            ContactRepository.ContactsCallBack contactsCallBackInternal = new ContactRepository.ContactsCallBack() {
+                @Override
+                public void onCallBack(ArrayList<Contact> contactsList) {
+                    ContactsManager.this.contactsList.addAll(contactsList);
+                    contactsCallBack.onCallBack(contactsList);
+                }
+            };
+            contactRepository.getAllContacts(contactsCallBackInternal);
+        } else {
+            contactsCallBack.onCallBack(contactsList);
         }
-        return contactsList;
     }
 }
