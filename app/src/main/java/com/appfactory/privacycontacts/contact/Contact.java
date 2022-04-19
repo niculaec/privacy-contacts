@@ -2,10 +2,12 @@ package com.appfactory.privacycontacts.contact;
 
 import androidx.annotation.NonNull;
 
+import com.appfactory.privacycontacts.db.ContactEntity;
+
 import java.util.UUID;
 
 
-public class Contact  {
+public class Contact {
 
     private final String name;
     private final String phoneNumber;
@@ -59,7 +61,12 @@ public class Contact  {
 
     public static class Builder {
 
-        public static Contact createContact(String id, String name, String phoneNumber, String emailAddress, String userPicture) {
+        public static Contact createContact(ContactEntity contactEntity) {
+            String name = contactEntity.name;
+            String phoneNumber= contactEntity.phoneNumber;
+            String emailAddress = contactEntity.emailAddress;
+            String userPicture= contactEntity.userPicture;
+            String id= contactEntity.id;
             if (!checkValidParams(name, phoneNumber, emailAddress, userPicture)) {
                 return null;
             }
@@ -67,7 +74,10 @@ public class Contact  {
         }
 
         public static Contact createContact(String name, String phoneNumber, String emailAddress, String userPicture) {
-            return createContact(UUID.randomUUID().toString(),name,phoneNumber,emailAddress,userPicture);
+            if (!checkValidParams(name, phoneNumber, emailAddress, userPicture)) {
+                return null;
+            }
+            return new Contact(name, phoneNumber, emailAddress, userPicture, UUID.randomUUID().toString());
 
         }
 
