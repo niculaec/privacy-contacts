@@ -1,10 +1,9 @@
 package com.appfactory.privacycontacts.contact;
 
-import android.widget.ArrayAdapter;
-
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-import com.appfactory.privacycontacts.R;
+import com.appfactory.privacycontacts.ContactAdapter;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class ContactsManager {
@@ -13,19 +12,13 @@ public class ContactsManager {
     private final ArrayList<Contact> contactsList = new ArrayList<Contact>();
     private final ContactRepository contactRepository = new ContactRepository();
     public static final String ID_KEY = "id";
-    private ArrayAdapter<Contact> arrayAdapter;
+    private WeakReference<ContactAdapter> arrayAdapterWeakReference;
 
 
     private ContactsManager() {
-        Contact contact1 = Contact.Builder.createContact("Sergiu","077777777","asd@yahoo.com","");
-        Contact contact2 = Contact.Builder.createContact("Mama","077777777","asd@yahoo.com","");
-        Contact contact3 = Contact.Builder.createContact("Alex","077773333","bad@yahoo.com","");
-        addContact(contact1);
-        addContact(contact2);
-        addContact(contact3);
     }
 
-    public static ContactsManager getInstance(){
+    public static ContactsManager getInstance() {
         return INSTANCE;
     }
 
@@ -36,14 +29,17 @@ public class ContactsManager {
         Logger.log("The contact " + aContact + " was successfully added to the contacts list.");
     }
 
-    public void notifyAdapter(){
-        if(arrayAdapter != null){
-            arrayAdapter.notifyDataSetChanged();
+    public void notifyAdapter() {
+        if (arrayAdapterWeakReference != null) {
+            ContactAdapter contactAdapter = arrayAdapterWeakReference.get();
+            if (contactAdapter != null) {
+                contactAdapter.notifyDataSetChanged();
+            }
         }
     }
 
-    public void setArrayAdapter(ArrayAdapter arrayAdapter){
-        this.arrayAdapter = arrayAdapter;
+    public void setArrayAdapter(ContactAdapter contactAdapter) {
+        this.arrayAdapterWeakReference = new WeakReference<ContactAdapter>(contactAdapter);
     }
 
     public Contact updateContact(Contact aContact, String name, String phoneNUmber, String emailAddress, String userPicture) {
@@ -64,6 +60,7 @@ public class ContactsManager {
 
     /**
      * Remove the selected contact from contactsList
+     *
      * @param aContact remove aContact from the list
      */
     public void removeContact(Contact aContact) {
@@ -75,11 +72,12 @@ public class ContactsManager {
 
     /**
      * To get a contact.
+     *
      * @param id compare the contact Id with id.
      * @return a contact or null
      */
-    public Contact getContact(String id){
-        for (Contact contact :contactsList) {
+    public Contact getContact(String id) {
+        for (Contact contact : contactsList) {
             if (contact.getId().equals(id))
                 return contact;
         }
@@ -88,13 +86,21 @@ public class ContactsManager {
 
     /**
      * Getting all contacts from contactList
+     *
      * @return a list of contacts
      */
-    public ArrayList<Contact> getAllContacts() {
-        if(contactsList.isEmpty()){
-            ArrayList<Contact> repoContacts = contactRepository.getAllContacts();
-            contactsList.addAll(repoContacts);
+    public void getAllContacts(ContactRepository.ContactsCallBack contactsCallBack) {
+        if (contactsList.isEmpty()) {
+            ContactRepository.ContactsCallBack contactsCallBackInternal = new ContactRepository.ContactsCallBack() {
+                @Override
+                public void onCallBack(ArrayList<Contact> contactsList) {
+                    ContactsManager.this.contactsList.addAll(contactsList);
+                    contactsCallBack.onCallBack(contactsList);
+                }
+            };
+            contactRepository.getAllContacts(contactsCallBackInternal);
+        } else {
+            contactsCallBack.onCallBack(contactsList);
         }
-        return contactsList;
     }
 }
