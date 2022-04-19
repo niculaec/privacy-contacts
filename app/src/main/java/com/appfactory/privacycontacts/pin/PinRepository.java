@@ -15,7 +15,7 @@ public class PinRepository {
         APPLICATION = application;
     }
 
-    public void savePinNumber(String pinNumber) {
+    public void savePinHash(String pinNumber) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(APPLICATION);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(PIN_KEY, pinNumber);
@@ -23,7 +23,7 @@ public class PinRepository {
         Logger.log("Pin number was saved in Repository.");
     }
 
-    public String readPinNumber() {
+    public String readPinHash() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(APPLICATION);
         String password = preferences.getString(PIN_KEY, "");
         Logger.log("Pin number was successfully read from Repository.");
