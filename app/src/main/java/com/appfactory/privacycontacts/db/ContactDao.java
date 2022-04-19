@@ -17,7 +17,7 @@ public interface ContactDao {
     List<ContactEntity> getAll();
 
     @Insert
-    void insertAll(ContactEntity...contactEntities);
+    void insertAll(ContactEntity... contactEntities);
 
     @Update
     void update(ContactEntity contactEntities);
