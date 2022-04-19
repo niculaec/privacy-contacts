@@ -7,6 +7,7 @@ public class PinManager {
 
     private final PinRepository pinRepository = new PinRepository();
     private static final PinManager INSTANCE = new PinManager();
+    DataEncryption dataEncryption = DataEncryption.getInstance();
 
     private PinManager() {
     }
@@ -14,7 +15,9 @@ public class PinManager {
     public static PinManager getInstance() {
         return INSTANCE;
     }
+    public void setPin(){
 
+    }
     public boolean registerPin(String pinNumber) {
 
         boolean pinIsNumber;
@@ -26,7 +29,7 @@ public class PinManager {
         }
 
         if (pinNumber != null && pinNumber.length() == 4 && pinIsNumber) {
-            String pinHash = DataEncryption.getMD5EncryptedString(pinNumber);
+            String pinHash = dataEncryption.getMD5EncryptedString(pinNumber);
             pinRepository.savePinHash(pinHash);
             Logger.log("Pin number " + pinNumber + " is saved.");
             return true;
@@ -40,7 +43,7 @@ public class PinManager {
     }
 
     public boolean loginWithPin(String pinNumber) {
-        String pinHash = DataEncryption.getMD5EncryptedString(pinNumber);
+        String pinHash = dataEncryption.getMD5EncryptedString(pinNumber);
         if (pinHash != null && pinRepository.readPinHash().equals(pinHash)) {
             Logger.log("Successful login.");
             return true;
