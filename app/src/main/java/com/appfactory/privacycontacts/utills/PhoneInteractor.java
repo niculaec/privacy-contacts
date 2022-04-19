@@ -37,9 +37,13 @@ public class PhoneInteractor {
     }
 
     public void sendEmail(String emailAddress) {
-        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.setData(Uri.parse("mailto:" + emailAddress));
-        context.startActivity(emailIntent);
-        Logger.log("Email has been sent");
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        emailIntent.setData(Uri.parse("mailto:" + emailAddress)); // only email apps should handle this);
+        try {
+            context.startActivity(emailIntent);
+        } catch (android.content.ActivityNotFoundException ex) {
+            ex.printStackTrace();
+        }
     }
+
 }
