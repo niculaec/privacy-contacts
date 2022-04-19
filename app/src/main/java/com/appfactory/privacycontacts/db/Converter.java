@@ -7,7 +7,7 @@ import org.w3c.dom.Entity;
 public class Converter {
 
     public static Contact entityToContact(ContactEntity contactEntity) {
-        return Contact.Builder.createContact(contactEntity.id, contactEntity.name, contactEntity.phoneNumber, contactEntity.emailAddress, contactEntity.userPicture);
+        return Contact.Builder.createContact(contactEntity);
     }
 
     public static ContactEntity contactToEntity(Contact contact) {
