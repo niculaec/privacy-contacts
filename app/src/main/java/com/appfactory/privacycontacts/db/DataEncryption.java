@@ -43,31 +43,29 @@ public class DataEncryption {
         return md5;
     }
 
-    public SecretKey generateKey(SecretKeySpec secret)
-            throws NoSuchAlgorithmException, InvalidKeySpecException
-    {
-        return secret = new SecretKeySpec ( password.getBytes(), "AES");
+    private SecretKey generateKey(String password) {
+        return new SecretKeySpec(password.getBytes(), "AES");
     }
 
-    public byte[] encryptMsg(String message, SecretKey secret)
-            throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, InvalidParameterSpecException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException
+    public String encryptText(String plainText)
+            throws NoSuchAlgorithmException, InvalidKeyException,NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException
     {
         /* Encrypt the message. */
         Cipher cipher = null;
         cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, secret);
-        byte[] cipherText = cipher.doFinal(message.getBytes("UTF-8"));
-        return cipherText;
+        cipher.init(Cipher.ENCRYPT_MODE,secretKey);
+        byte[] cipherText = cipher.doFinal(plainText.getBytes("UTF-8"));
+        return new String(cipherText, StandardCharsets.UTF_8);
     }
 
-    public String decryptMsg(byte[] cipherText, SecretKey secret)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidParameterSpecException, InvalidAlgorithmParameterException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException
+    public String decryptText(String cipherText)
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException
     {
         /* Decrypt the message, given derived encContentValues and initialization vector. */
         Cipher cipher = null;
         cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.DECRYPT_MODE, secret);
-        String decryptString = new String(cipher.doFinal(cipherText), "UTF-8");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey);
+        String decryptString = new String(cipher.doFinal(cipherText.getBytes()), "UTF-8");
         return decryptString;
     }
 }
