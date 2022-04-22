@@ -1,13 +1,15 @@
 package com.appfactory.privacycontacts.db;
 
+import android.util.Log;
+
+import com.appfactory.privacycontacts.utills.Logger;
+
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.security.InvalidAlgorithmParameterException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.InvalidParameterSpecException;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -37,7 +39,7 @@ public class DataEncryption {
         try {
             mdEnc = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
-            System.out.println("Exception while encrypting to md5");
+            Logger.log("Exception while encrypting to md5");
             e.printStackTrace();
         } // Encryption algorithm
         mdEnc.update(encTarget.getBytes(), 0, encTarget.length());
