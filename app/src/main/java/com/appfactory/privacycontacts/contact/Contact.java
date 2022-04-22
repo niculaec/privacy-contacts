@@ -3,6 +3,7 @@ package com.appfactory.privacycontacts.contact;
 import androidx.annotation.NonNull;
 
 import com.appfactory.privacycontacts.db.ContactEntity;
+import com.appfactory.privacycontacts.db.DataEncryption;
 
 import java.util.UUID;
 
@@ -62,15 +63,21 @@ public class Contact {
     public static class Builder {
 
         public static Contact createContact(ContactEntity contactEntity) {
-            String name = contactEntity.name;
-            String phoneNumber= contactEntity.phoneNumber;
-            String emailAddress = contactEntity.emailAddress;
-            String userPicture= contactEntity.userPicture;
-            String id= contactEntity.id;
-            if (!checkValidParams(name, phoneNumber, emailAddress, userPicture)) {
+            DataEncryption dataEncryption = DataEncryption.getInstance();
+            String id = contactEntity.id;
+            try {
+                String name = dataEncryption.decryptText(contactEntity.name);
+                String phoneNumber = dataEncryption.decryptText(contactEntity.phoneNumber);
+                String emailAddress = dataEncryption.decryptText(contactEntity.emailAddress);
+                String userPicture = dataEncryption.decryptText(contactEntity.userPicture);
+                if (!checkValidParams(name, phoneNumber, emailAddress, userPicture)) {
+                    return null;
+                }
+                return new Contact(name, phoneNumber, emailAddress, userPicture, id);
+            } catch (Exception e) {
+                e.printStackTrace();
                 return null;
             }
-            return new Contact(name, phoneNumber, emailAddress, userPicture, id);
         }
 
         public static Contact createContact(String name, String phoneNumber, String emailAddress, String userPicture) {

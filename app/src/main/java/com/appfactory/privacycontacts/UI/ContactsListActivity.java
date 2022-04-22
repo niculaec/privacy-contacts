@@ -1,7 +1,9 @@
 package com.appfactory.privacycontacts.UI;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +23,6 @@ public class ContactsListActivity extends AppCompatActivity {
     ContactsManager contactsManager = ContactsManager.getInstance();
     private ListView listView;
     FloatingActionButton fob;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class ContactsListActivity extends AppCompatActivity {
         };
         contactsManager.getAllContacts(contactsCallBack);
     }
-    
+
     private void setUpOnclickListener() {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

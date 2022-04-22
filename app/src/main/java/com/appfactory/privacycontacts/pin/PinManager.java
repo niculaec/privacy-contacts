@@ -1,14 +1,17 @@
 package com.appfactory.privacycontacts.pin;
 
+import com.appfactory.privacycontacts.db.DataEncryption;
 import com.appfactory.privacycontacts.utills.Logger;
 
 public class PinManager {
 
     private final PinRepository pinRepository = new PinRepository();
     private static final PinManager INSTANCE = new PinManager();
+    DataEncryption dataEncryption = DataEncryption.getInstance();
 
     private PinManager() {
     }
+
 
     public static PinManager getInstance() {
         return INSTANCE;
@@ -25,7 +28,9 @@ public class PinManager {
         }
 
         if (pinNumber != null && pinNumber.length() == 4 && pinIsNumber) {
-            pinRepository.savePinNumber(pinNumber);
+            String pinHash = dataEncryption.getMD5EncryptedString(pinNumber);
+            pinRepository.savePinHash(pinHash);
+            dataEncryption.setPassword(pinNumber);
             Logger.log("Pin number " + pinNumber + " is saved.");
             return true;
         }
@@ -34,15 +39,18 @@ public class PinManager {
     }
 
     public boolean isRegistered() {
-        return !pinRepository.readPinNumber().isEmpty();
+        return !pinRepository.readPinHash().isEmpty();
     }
 
     public boolean loginWithPin(String pinNumber) {
-        if (pinNumber != null && pinRepository.readPinNumber().equals(pinNumber)) {
+        String pinHash = dataEncryption.getMD5EncryptedString(pinNumber);
+        if (pinHash != null && pinRepository.readPinHash().equals(pinHash)) {
+            dataEncryption.setPassword(pinNumber);
             Logger.log("Successful login.");
             return true;
         }
         Logger.log("Please check Pin number.");
         return false;
     }
+
 }

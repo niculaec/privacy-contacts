@@ -1,24 +1,31 @@
 package com.appfactory.privacycontacts.db;
 
 import com.appfactory.privacycontacts.contact.Contact;
+import com.appfactory.privacycontacts.pin.PinManager;
 
-import org.w3c.dom.Entity;
 
 public class Converter {
+    PinManager pinManager = PinManager.getInstance();
 
     public static Contact entityToContact(ContactEntity contactEntity) {
         return Contact.Builder.createContact(contactEntity);
     }
 
     public static ContactEntity contactToEntity(Contact contact) {
+        DataEncryption dataEncryption = DataEncryption.getInstance();
         ContactEntity contactEntity = new ContactEntity();
         contactEntity.id = contact.getId();
-        contactEntity.name = contact.getName();
-        contactEntity.phoneNumber = contact.getPhoneNumber();
-        contactEntity.emailAddress = contact.getEmailAddress();
-        contactEntity.userPicture = contact.getUserPicture();
 
-        return contactEntity;
+        try {
+            contactEntity.name = dataEncryption.encryptText(contact.getName());
+            contactEntity.phoneNumber = dataEncryption.encryptText(contact.getPhoneNumber());
+            contactEntity.emailAddress = dataEncryption.encryptText(contact.getEmailAddress());
+            contactEntity.userPicture = dataEncryption.encryptText(contact.getUserPicture());
+            return contactEntity;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
 
