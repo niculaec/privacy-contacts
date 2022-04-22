@@ -12,12 +12,11 @@ public class PinManager {
     private PinManager() {
     }
 
+
     public static PinManager getInstance() {
         return INSTANCE;
     }
-    public void setPin(){
 
-    }
     public boolean registerPin(String pinNumber) {
 
         boolean pinIsNumber;
@@ -31,6 +30,7 @@ public class PinManager {
         if (pinNumber != null && pinNumber.length() == 4 && pinIsNumber) {
             String pinHash = dataEncryption.getMD5EncryptedString(pinNumber);
             pinRepository.savePinHash(pinHash);
+            dataEncryption.setPassword(pinNumber);
             Logger.log("Pin number " + pinNumber + " is saved.");
             return true;
         }
@@ -45,10 +45,12 @@ public class PinManager {
     public boolean loginWithPin(String pinNumber) {
         String pinHash = dataEncryption.getMD5EncryptedString(pinNumber);
         if (pinHash != null && pinRepository.readPinHash().equals(pinHash)) {
+            dataEncryption.setPassword(pinNumber);
             Logger.log("Successful login.");
             return true;
         }
         Logger.log("Please check Pin number.");
         return false;
     }
+
 }
