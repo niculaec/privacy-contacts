@@ -31,6 +31,12 @@ public class ContactsListActivity extends AppCompatActivity {
         setUpList();
         setUpOnclickListener();
     }
+    @Override
+    public void onBackPressed()
+    {
+        finishAffinity();
+        finish();
+    }
 
     private void setUpList() {
         listView = findViewById(R.id.contactListView);
