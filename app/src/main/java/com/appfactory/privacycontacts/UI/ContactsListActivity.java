@@ -35,7 +35,6 @@ public class ContactsListActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         finishAffinity();
-        finish();
     }
 
     private void setUpList() {
