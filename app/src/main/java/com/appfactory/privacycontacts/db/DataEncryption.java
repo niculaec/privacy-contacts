@@ -18,13 +18,18 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class DataEncryption {
     private static final DataEncryption INSTANCE = new DataEncryption();
-    private static String password;
+    private SecretKey secretKey;
 
     private DataEncryption() {
     }
 
-    public static DataEncryption getInstance(){
-        return INSTANCE;}
+    public void setPassword(String password) {
+        secretKey = generateKey(getMD5EncryptedString(password + password));
+    }
+
+    public static DataEncryption getInstance() {
+        return INSTANCE;
+    }
 
 
     public String getMD5EncryptedString(String encTarget) {
