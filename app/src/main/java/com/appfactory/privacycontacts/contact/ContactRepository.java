@@ -51,8 +51,10 @@ public class ContactRepository {
             public void run() {
                 ContactEntity contactEntity;
                 contactEntity = Converter.contactToEntity(aContact);
-                contactDao.insertAll(contactEntity);
-                Logger.getLogger(aContact + "\n" + "The contact is saved in database." + "\n");
+                if (contactEntity != null) {
+                    contactDao.insertAll(contactEntity);
+                    Logger.getLogger(aContact + "\n" + "The contact is saved in database." + "\n");
+                }
             }
         });
     }
@@ -63,8 +65,10 @@ public class ContactRepository {
             public void run() {
                 ContactEntity contactEntity;
                 contactEntity = Converter.contactToEntity(aContact);
-                contactDao.update(contactEntity);
-                Logger.getLogger(aContact + "\n" + "Contact has been updated in Repository." + "\n");
+                if (contactEntity != null) {
+                    contactDao.update(contactEntity);
+                    Logger.getLogger(aContact + "\n" + "Contact has been updated in Repository." + "\n");
+                }
             }
         });
     }
@@ -75,13 +79,15 @@ public class ContactRepository {
             public void run() {
                 ContactEntity contactEntity;
                 contactEntity = Converter.contactToEntity(aContact);
-                contactDao.delete(contactEntity);
-                Logger.getLogger(aContact + "\n" + "Contact has been removed from Repository." + "\n");
+                if (contactEntity != null) {
+                    contactDao.delete(contactEntity);
+                    Logger.getLogger(aContact + "\n" + "Contact has been removed from Repository." + "\n");
+                }
             }
         });
     }
 
-    public interface ContactsCallBack{
+    public interface ContactsCallBack {
         void onCallBack(ArrayList<Contact> contactsList);
     }
 }
