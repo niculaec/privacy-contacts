@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class ContactRepository {
-    AppDatabase db = Room.databaseBuilder(APPLICATION ,AppDatabase.class, "contacts-database").build();
+    AppDatabase db = Room.databaseBuilder(APPLICATION, AppDatabase.class, "contacts-database").build();
     ContactDao contactDao = db.contactDao();
     private static Application APPLICATION;
 
@@ -36,8 +36,11 @@ public class ContactRepository {
 
                 List<ContactEntity> contactEntityList = contactDao.getAll();
                 ArrayList<Contact> contactList = new ArrayList<Contact>();
-                for (ContactEntity aContactEntity: contactEntityList) {
-                    contactList.add(Converter.entityToContact(aContactEntity));
+                for (ContactEntity aContactEntity : contactEntityList) {
+                    Contact contact = Converter.entityToContact(aContactEntity);
+                    if (contact != null){
+                        contactList.add(contact);
+                    }
                 }
                 contactsCallBack.onCallBack(contactList);
                 Logger.getLogger("Successfully load all contacts from database");
