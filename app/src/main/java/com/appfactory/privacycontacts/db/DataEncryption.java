@@ -1,5 +1,6 @@
 package com.appfactory.privacycontacts.db;
 
+import android.util.Base64;
 import android.util.Log;
 
 import com.appfactory.privacycontacts.utills.Logger;
