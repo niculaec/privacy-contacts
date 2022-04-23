@@ -31,9 +31,6 @@
             android:name=".UI.ContactDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".UI.LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".UI.EnterPinActivity"
             android:exported="false" />
         <activity
@@ -48,9 +45,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".UI.CreateAccountActivity"
-            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
