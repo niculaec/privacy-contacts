@@ -5,7 +5,6 @@ import com.appfactory.privacycontacts.pin.PinManager;
 
 
 public class Converter {
-    PinManager pinManager = PinManager.getInstance();
 
     public static Contact entityToContact(ContactEntity contactEntity) {
         return Contact.Builder.createContact(contactEntity);
