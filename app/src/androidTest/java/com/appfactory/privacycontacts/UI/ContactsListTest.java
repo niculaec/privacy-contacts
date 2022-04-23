@@ -61,7 +61,20 @@ public class ContactsListTest {
         onView(ViewMatchers.withId(R.id.phoneTextView)).check(matches(withText("077777777")));
         onView(ViewMatchers.withId(R.id.emailAddressTextView)).check(matches(withText("Alexandru@gmail.com")));
 
-        //update contact.
+        //update a contact
+        onView(withText("Alexandru")).perform(ViewActions.click());
+        onView(withId(R.id.buttonEdit)).perform(click());
+        onView(withId(R.id.editTextPersonName)).perform(ViewActions.clearText()); // Clear the text of personName.
+        onView(withId(R.id.editTextPersonName)).perform(ViewActions.typeText("Alex"), ViewActions.closeSoftKeyboard());
+        onView(withId(R.id.buttonSave)).perform(click());
+
         //delete contact.
+        onView(withText("Alex")).perform(ViewActions.click());
+        onView(withId(R.id.buttonDelete)).perform(click()); //   perform click on "DELETE" button.
+        onView(withText("Are you sure you want to delete this contact?")).check(matches(isDisplayed()));// check id the dialog is showed on screen.
+        onView(withId(android.R.id.button2)).perform(click());
+        onView(withId(R.id.buttonDelete)).perform(click()); //   perform click on "DELETE" button.
+        onView(withText("Are you sure you want to delete this contact?")).check(matches(isDisplayed()));// check id the dialog is showed on screen.
+        onView(withId(android.R.id.button1)).perform(click());
     }
 }
