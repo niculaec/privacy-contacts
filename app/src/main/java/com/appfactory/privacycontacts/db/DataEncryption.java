@@ -55,24 +55,30 @@ public class DataEncryption {
     }
 
     public String encryptText(String plainText)
-            throws NoSuchAlgorithmException, InvalidKeyException,NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException
-    {
+            throws NoSuchAlgorithmException, InvalidKeyException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, UnsupportedEncodingException {
+        if (plainText.isEmpty()) {
+            return plainText;
+        }
         /* Encrypt the message. */
         Cipher cipher = null;
         cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE,secretKey);
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
         byte[] cipherText = cipher.doFinal(plainText.getBytes("UTF-8"));
-        return new String(cipherText, StandardCharsets.UTF_8);
+        return Base64.encodeToString(cipherText, Base64.NO_WRAP);
     }
 
     public String decryptText(String cipherText)
-            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException
-    {
+            throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
+        if (cipherText.isEmpty()) {
+            return cipherText;
+        }
+
+        byte[] decode = Base64.decode(cipherText, Base64.NO_WRAP);
         /* Decrypt the message, given derived encContentValues and initialization vector. */
         Cipher cipher = null;
         cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        String decryptString = new String(cipher.doFinal(cipherText.getBytes()), "UTF-8");
+        String decryptString = new String(cipher.doFinal(decode));
         return decryptString;
     }
 }
