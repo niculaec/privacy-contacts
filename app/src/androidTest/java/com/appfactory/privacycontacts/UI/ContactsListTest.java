@@ -1,19 +1,14 @@
 package com.appfactory.privacycontacts.UI;
 
-import static androidx.test.espresso.Espresso.onData;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import static org.hamcrest.JMock1Matchers.equalTo;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.hasEntry;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
 
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
@@ -21,7 +16,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.appfactory.privacycontacts.R;
-import com.appfactory.privacycontacts.contact.Contact;
 
 import org.junit.After;
 import org.junit.Before;
@@ -69,6 +63,8 @@ public class ContactsListTest {
         onView(withId(R.id.editTextPersonName)).perform(ViewActions.typeText("Alex"), ViewActions.closeSoftKeyboard());
         onView(withId(R.id.buttonSave)).perform(click());
 
+        onView(ViewMatchers.withId(R.id.personNameTextViewSingleItem)).check(matches(withText("Alex")));
+
         //delete contact.
         onView(withText("Alex")).perform(ViewActions.click());
         onView(withId(R.id.buttonDelete)).perform(click()); //   perform click on "DELETE" button.
@@ -77,5 +73,8 @@ public class ContactsListTest {
         onView(withId(R.id.buttonDelete)).perform(click()); //   perform click on "DELETE" button.
         onView(withText("Are you sure you want to delete this contact?")).check(matches(isDisplayed()));// check id the dialog is showed on screen.
         onView(withId(android.R.id.button1)).perform(click());
+
+
+        onView(withText("Alex")).check(doesNotExist());
     }
 }
