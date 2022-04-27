@@ -78,7 +78,7 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
                 if(userPictureBase64 == null){
-                    userPictureBase64 = (contact != null) ? contact.getUserPicture() : ""; // if in line (ternary operator).
+                    userPictureBase64 = contact.getUserPicture();
                 }
                 if (contact != null) {
                     contactsManager.updateContact(contact, personName, phoneNumber, emailAddress, userPictureBase64);
