@@ -33,11 +33,6 @@ import com.appfactory.privacycontacts.R;
 import com.appfactory.privacycontacts.UI.LandingActivity;
 
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 @RunWith(AndroidJUnit4.class)
 public class RegisterPinActivityTest {
 
@@ -67,7 +62,7 @@ public class RegisterPinActivityTest {
 
         TestUtils.restartApplication(activityRule);
 
-        TestUtils.registerWithPin();
+        TestUtils.loginWithPin();
 
         onView(withId(R.id.contactListView)).check(matches(isDisplayed()));
     }
