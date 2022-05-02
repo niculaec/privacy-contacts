@@ -27,7 +27,9 @@ public abstract class AppDatabase extends RoomDatabase {// AppDatabase is a subc
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "contacts-database").build();
-                    // initialize the instance using a builder object, the first argument is the application context, second is the database class name to define the database, third is the name of the database.
+                    // initialize the instance using a builder object, the first argument is the application context,
+                    // second is the database class name to define the database,
+                    // third is the name of the database.
                 }
             }
         }

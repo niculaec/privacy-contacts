@@ -27,13 +27,6 @@ public class ContactRepository {
         AppDatabase.DATABASE_EXECUTOR.execute(new Runnable() {
             @Override
             public void run() {
-//                try {
-//                    Thread.sleep(10000);
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-                String threadName = Thread.currentThread().getName();
-
                 List<ContactEntity> contactEntityList = contactDao.getAll();
                 ArrayList<Contact> contactList = new ArrayList<Contact>();
                 for (ContactEntity aContactEntity : contactEntityList) {
