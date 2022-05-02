@@ -23,21 +23,27 @@
         android:theme="@style/Theme.AppCompat.DayNight" >
         <activity
             android:name=".UI.SetPinActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UI.AddNewContactActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UI.ContactDetailsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UI.EnterPinActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UI.ContactsListActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".UI.LandingActivity"
+            android:screenOrientation="portrait"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
