@@ -90,7 +90,6 @@ public class Contact {
 
 
         private static boolean checkValidParams(String name, String phoneNumber, String emailAddress, String userPicture) {
-
             if (name == null || name.isEmpty() ||
                     phoneNumber == null ||
                     !(isValidEmail(emailAddress) || emailAddress.isEmpty()) ||
@@ -101,7 +100,6 @@ public class Contact {
         }
 
         private static boolean isValidEmail(String emailAddress){
-
             return emailAddress != null && Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
         }
 

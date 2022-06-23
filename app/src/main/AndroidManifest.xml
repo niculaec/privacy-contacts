@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACTION_SEND" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-
 <!--ContactApplication was added to inform OS to use the class as application singleton.-->
     <application
         android:name=".ContactsApplication"
