@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 
 import com.appfactory.privacycontacts.db.ContactEntity;
 import com.appfactory.privacycontacts.db.DataEncryption;
+import com.appfactory.privacycontacts.utills.Utils;
+
 import java.util.UUID;
 
 public class Contact {
@@ -92,15 +94,11 @@ public class Contact {
         private static boolean checkValidParams(String name, String phoneNumber, String emailAddress, String userPicture) {
             if (name == null || name.isEmpty() ||
                     phoneNumber == null ||
-                    !(isValidEmail(emailAddress) || emailAddress.isEmpty()) ||
+                    emailAddress == null ||
                     userPicture == null) {
                 return false;
             }
             return true;
-        }
-
-        private static boolean isValidEmail(String emailAddress){
-            return emailAddress != null && Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
         }
 
         public static Contact createUpdatedContact(Contact oldContact, String name, String phoneNumber, String emailAddress, String userPicture) {
