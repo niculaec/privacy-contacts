@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Patterns;
 
 import com.appfactory.privacycontacts.UI.AddNewContactActivity;
 
@@ -43,5 +44,10 @@ public class Utils {
     public static Bitmap getBitmapFromBase64(String pictureBase64) {
         byte[] decodedString = Base64.decode(pictureBase64, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+    }
+    public static boolean isValidEmail(String emailAddress){
+        Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
+        return true;
+        //return emailAddress != null &&
     }
 }
