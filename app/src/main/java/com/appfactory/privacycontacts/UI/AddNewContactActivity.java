@@ -61,20 +61,10 @@ public class AddNewContactActivity extends AppCompatActivity {
         if (contact != null) {
             personNameEditText.setText(contact.getName());
             phoneNumberEditText.setText(contact.getPhoneNumber());
-
+            emailAddressEditText.setText(contact.getEmailAddress());
             if (!contact.getUserPicture().isEmpty()) {
                 userPictureImageView.setImageBitmap(Utils.getBitmapFromBase64(contact.getUserPicture()));
             }
-
-            if ((!contact.getEmailAddress().isEmpty())
-                    && (!Utils.isValidEmail(contact.getEmailAddress()))) {
-                emailAddressEditText.setText(contact.getEmailAddress());
-            }
-            else {
-                emailAddressEditText.setError("Wrong email format");
-            return;
-            }
-
             saveButton.setText("Update");
         }
 
@@ -86,7 +76,13 @@ public class AddNewContactActivity extends AppCompatActivity {
                 String personName = personNameEditText.getText().toString();
                 String phoneNumber = phoneNumberEditText.getText().toString();
                 String emailAddress = emailAddressEditText.getText().toString();// get the value and convert to String.
-                if(userPictureBase64 == null){
+                if (!emailAddress.isEmpty()
+                        && !Utils.isValidEmail(emailAddress)) {
+                    emailAddressEditText.setError("Wrong email format");
+                    return;
+                }
+
+                if (userPictureBase64 == null) {
                     userPictureBase64 = (contact != null) ? contact.getUserPicture() : ""; // if in line (ternary operator).
                 }
                 if (contact != null) {

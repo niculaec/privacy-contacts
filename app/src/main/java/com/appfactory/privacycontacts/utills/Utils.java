@@ -46,8 +46,6 @@ public class Utils {
         return BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
     }
     public static boolean isValidEmail(String emailAddress){
-        Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
-        return true;
-        //return emailAddress != null &&
+        return Patterns.EMAIL_ADDRESS.matcher(emailAddress).matches();
     }
 }
