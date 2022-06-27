@@ -1,12 +1,14 @@
 package com.appfactory.privacycontacts.contact;
 
+import android.util.Patterns;
+
 import androidx.annotation.NonNull;
 
 import com.appfactory.privacycontacts.db.ContactEntity;
 import com.appfactory.privacycontacts.db.DataEncryption;
+import com.appfactory.privacycontacts.utills.Utils;
 
 import java.util.UUID;
-
 
 public class Contact {
 
@@ -87,6 +89,7 @@ public class Contact {
             return new Contact(name, phoneNumber, emailAddress, userPicture, UUID.randomUUID().toString());
 
         }
+
 
         private static boolean checkValidParams(String name, String phoneNumber, String emailAddress, String userPicture) {
             if (name == null || name.isEmpty() ||
