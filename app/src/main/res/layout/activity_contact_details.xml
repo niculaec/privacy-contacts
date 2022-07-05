@@ -62,12 +62,15 @@
         android:id="@+id/iconMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="304dp"
+        android:layout_marginEnd="51dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/phoneTextView"
+        app:layout_constraintEnd_toEndOf="@+id/phoneTextView"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/iconCall"
         app:layout_constraintStart_toStartOf="@+id/phoneTextView"
         app:layout_constraintTop_toTopOf="@+id/phoneTextView"
-        app:layout_constraintVertical_bias="0.517"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_message_24" />
 
     <ImageView
@@ -92,7 +95,7 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneTextView" />
 
